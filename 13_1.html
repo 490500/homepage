@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>13.1 复杂序列 | Complex Sequences</title>
+<style>
+  :root {
+    --text: #1a1a1a;
+    --muted: #555;
+    --accent: #8b0000;
+    --border: #ddd;
+    --bg: #fafafa;
+    --en-accent: #003366;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Georgia", "Songti SC", "SimSun", serif;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 32px 120px;
+    background: #fff;
+  }
+
+  h1 {
+    font-size: 1.9em;
+    color: var(--accent);
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 12px;
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 1.1em;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 1.4em;
+    color: var(--accent);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+  }
+
+  h3 {
+    font-size: 1.15em;
+    color: #333;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  h4 {
+    font-size: 1.05em;
+    color: #444;
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 0 0 16px;
+    text-align: justify;
+  }
+
+  ol, ul {
+    margin: 0 0 16px;
+    padding-left: 28px;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  strong {
+    color: #000;
+    font-weight: 700;
+  }
+
+  em {
+    color: var(--muted);
+  }
+
+  blockquote {
+    border-left: 3px solid var(--border);
+    margin: 20px 0;
+    padding: 12px 20px;
+    background: #f8f8f8;
+    color: #333;
+    font-style: italic;
+  }
+
+  .box {
+    background: #f8f8f8;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .box-title {
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .dimension {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.78em;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .divider {
+    text-align: center;
+    color: var(--muted);
+    margin: 48px 0;
+    font-size: 1.2em;
+    letter-spacing: 8px;
+  }
+
+  .en-section {
+    border-top: 2px dashed var(--border);
+    margin-top: 60px;
+    padding-top: 40px;
+  }
+
+  .en-section h1 {
+    color: var(--en-accent);
+    border-bottom-color: var(--en-accent);
+  }
+
+  .en-section h2 {
+    color: var(--en-accent);
+    border-left-color: var(--en-accent);
+  }
+
+  .en-section h3 {
+    color: #1a3a5c;
+  }
+
+  .en-section .dimension {
+    background: var(--en-accent);
+  }
+
+  .en-section .box-title {
+    color: var(--en-accent);
+  }
+
+  .summary {
+    background: #fdf6e3;
+    border: 1px solid #e0c97f;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 32px 0;
+  }
+
+  .summary strong {
+    color: var(--accent);
+  }
+
+  .en-section .summary strong {
+    color: var(--en-accent);
+  }
+
+  .toc {
+    background: #f4f4f4;
+    border-radius: 6px;
+    padding: 20px 28px;
+    margin-bottom: 40px;
+  }
+
+  .toc-title {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .toc a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .term {
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 32px 18px 80px; }
+    h1 { font-size: 1.5em; }
+    h2 { font-size: 1.2em; }
+    body { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== 中文版 ==================== -->
+<h1>13.1 复杂序列：进攻—格挡—反还击的无缝组合</h1>
+<div class="subtitle">Complex Sequences: Seamless Attack–Parry–Counter-Riposte Combination Plays</div>
+
+<div class="toc">
+  <div class="toc-title">本节结构</div>
+  <ol>
+    <li><a href="#zh-1">组合技术的个性化原则</a></li>
+    <li><a href="#zh-2">进攻+防守+反还击：攻防结合的组合逻辑</a></li>
+    <li><a href="#zh-3">己方：进攻后接反还击的两种情形</a></li>
+    <li><a href="#zh-4">对手：防守与还击的四种模式</a></li>
+    <li><a href="#zh-5">解析：实战中的一般规律与应对原则</a></li>
+    <li><a href="#zh-6">多学科分析框架</a></li>
+    <li><a href="#zh-7">训练启示</a></li>
+    <li><a href="#zh-8">与已发表研究的对话</a></li>
+    <li><a href="#zh-9">模型边界</a></li>
+  </ol>
+</div>
+
+<p>组合技术是具有个性化特点的，要根据运动员的生理条件、身体素质、心理特点、基本技术特点，将步法、进攻、防守、反攻、反还击等几类基本技术组合起来，建立符合运动员个体的组合技术。本节聚焦于其中最核心的一类：<strong>进攻+防守+反还击</strong>的无缝组合。这是采取攻防结合的策略制定的组合技术，当进攻被对手防住后，应该立即转为反还击。</p>
+
+<h2 id="zh-1">13.1.1 组合技术的个性化原则</h2>
+
+<p>组合技术不是基本技术的简单叠加，而是根据运动员个体特征进行有机构建的结果。其构建依据包括：</p>
+
+<ul>
+  <li><strong>生理条件</strong>：身高、臂展、下肢爆发力、肩肘腕耐力；</li>
+  <li><strong>身体素质</strong>：速度、灵敏、柔韧、核心稳定性；</li>
+  <li><strong>心理特点</strong>：风险偏好、决策速度、压力耐受、注意力风格；</li>
+  <li><strong>基本技术特点</strong>：擅长线路、格挡偏好、步法节奏、控剑能力。</li>
+</ul>
+
+<p>在此基础上，将步法、进攻、防守、反攻、反还击等基本技术组合起来，形成符合运动员个体的固定技术形式。组合技术的个性化，意味着没有一套组合是普适的——同一个进攻+防守+反还击的组合，对不同运动员可能需要不同的步法节奏、不同的格挡位选择、不同的反还击线路。</p>
+
+<p>从数学物理角度看，组合技术的个性化构建是一个<strong>约束优化问题</strong>：在运动员的身体参数、技术参数和心理参数约束下，寻找使期望得分最大化的技术组合序列。不同运动员的参数空间不同，最优组合也不同。</p>
+
+<h2 id="zh-2">13.1.2 进攻+防守+反还击：攻防结合的组合逻辑</h2>
+
+<p>这是采取攻防结合的策略制定的组合技术：进攻和防守相结合。当进攻被对手防住后，应该立即转为反还击。</p>
+
+<p>这一组合的核心逻辑是：<strong>进攻不是终点，而是整个序列的起点。</strong> 进攻的目的不仅是直接得分，还包括迫使对手做出防守反应，从而为后续的反还击创造可预测的线路和时间窗口。进攻被防住不是失败，而是序列进入第二阶段的信号。</p>
+
+<blockquote>用博弈论的语言说，进攻+防守+反还击是一个<strong>三阶段序贯博弈</strong>：第一阶段你选择进攻线路，第二阶段对手选择防守方式，第三阶段你根据对手的防守选择反还击线路。收益矩阵取决于每一阶段的命中概率和优先权判定。</blockquote>
+
+<h2 id="zh-3">13.1.3 己方：进攻后接反还击的两种情形</h2>
+
+<p>如果弓步进攻过于猛烈，反还击就会变得困难。进攻后接反还击有两种情形：</p>
+
+<h4>情形一：弓步向前复原，转入近距离反还击</h4>
+
+<p>进攻后，弓步向前复原并迅速转为近距离反还击，或者紧接着用连续的弓步进行追击。这种情形适用于：</p>
+
+<ul>
+  <li>对手习惯在近距离进行直接还击；</li>
+  <li>对手的防守后回收较慢；</li>
+  <li>己方具备较强的近身控剑能力。</li>
+</ul>
+
+<p>从生物力学角度看，弓步向前复原意味着重心继续前移，这为近距离反还击提供了力学基础：后腿仍具备二次蹬伸能力，持剑手仍在有效攻击范围内，身体重心未完全越过支撑面，可以快速完成格挡和反还击。</p>
+
+<h4>情形二：弓步向后复原，拉开距离</h4>
+
+<p>进攻后，弓步向后复原，拉开距离，准备应对对手的还击。这种情形适用于：</p>
+
+<ul>
+  <li>对手习惯在远距离进行转移还击或相对速度还击；</li>
+  <li>己方的近距离控剑能力相对较弱；</li>
+  <li>己方需要时间重新建立距离和节奏。</li>
+</ul>
+
+<p>从运动学角度看，弓步向后复原意味着重心回撤，这为远距离防守反击提供了空间：对手的直接还击难以在远距离命中，己方有时间观察对手的还击线路并做出反应。</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>博弈论视角</div>
+  <p style="margin-bottom:0;">己方在进攻后的复原方向选择，是一个<strong>信号博弈</strong>：向前复原传递“我准备近身反还击”的信号，向后复原传递“我准备远距离防守”的信号。对手会根据这一信号调整还击方式。因此，复原方向的选择本身就可以作为战术欺骗的一部分——你可以向前复原但准备远距离防守，或向后复原但准备近身追击。</p>
+</div>
+
+<h2 id="zh-4">13.1.4 对手：防守与还击的四种模式</h2>
+
+<p>对手的防守（还击）也有四种情况：</p>
+
+<h4>模式一：仅直接防守</h4>
+
+<p>对手仅做直接格挡，不做额外变化。这种模式下，己方的反还击可以针对对手格挡后的直接还击线路，进行预判性防守和反还击。</p>
+
+<h4>模式二：划圆防守</h4>
+
+<p>针对近距离的情况，效果通常决定于速度，采取划圆防守的方式，以快速、直接的反击应对，即第4防守还击第4部位。这种模式下，己方需要快速识别对手的划圆方向，并在其划圆完成前完成反还击。</p>
+
+<h4>模式三：转移还击和交叉还击</h4>
+
+<p>特殊情况下也会运用转移还击和交叉还击。这种模式下，己方需要保持较宽的距离，以便有足够时间观察对手的还击线路变化。</p>
+
+<h4>模式四：转移还击和相对速度还击</h4>
+
+<p>在远距离的还击、直接还击难以取胜时，往往采用转移还击和相对速度还击。这种模式下，己方需要控制距离，防止对手利用相对速度优势完成还击。</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">DA</span>数据科学视角</div>
+  <p style="margin-bottom:0;">对手的防守模式分布是可以通过比赛视频标注统计的。例如，统计对手在特定进攻线路下的防守选择概率：直接防守40%，划圆防守30%，转移还击20%，相对速度还击10%。基于这一分布，己方可以优化反还击线路的选择，使期望收益最大化。这正是量化交易中“因子分析”在击剑中的对应应用。</p>
+</div>
+
+<h2 id="zh-5">13.1.5 解析：实战中的一般规律与应对原则</h2>
+
+<p>以上双方的反应，是实战中经常出现的情形，即实战中的一般规律。应当关注进攻后接反击的常见模式。</p>
+
+<p>无论进攻后弓步的前收还是向后回收，应快速并针对对手直接还击做迅速的防守。反还击要根据距离和对手身体位置来选择攻击点和手法。</p>
+
+<p>具体应对原则包括：</p>
+
+<ol>
+  <li><strong>快速识别</strong>：进攻被格挡后，第一时间读取对手的还击线路和身体位置；</li>
+  <li><strong>距离适配</strong>：近距离用直接反还击，远距离用转移或相对速度反还击；</li>
+  <li><strong>线路选择</strong>：根据对手身体位置选择攻击点——对手躯干偏向内侧时攻击外侧，偏向外侧时攻击内侧；</li>
+  <li><strong>手法选择</strong>：近距离用压剑或带剑反还击，远距离用转移刺或击打剑反还击；</li>
+  <li><strong>优先权维护</strong>：反还击过程中保持持剑手稳定延伸和身体前压，确保裁判看到主动控制。</li>
+</ol>
+
+<h2 id="zh-6">13.1.6 多学科分析框架</h2>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>数学物理</div>
+  <p style="margin-bottom:0;">进攻+防守+反还击可形式化为一个<strong>三阶段马尔可夫决策过程</strong>。状态包括：距离、对手姿态、剑位、比分。动作包括：进攻线路选择、复原方向选择、反还击线路选择。转移概率取决于对手的防守反应分布。最优策略通过动态规划求解，目标是最大化整场比赛的期望得分。这一框架与量化交易中的<strong>多阶段执行算法</strong>（如VWAP、TWAP）在数学结构上同构。</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">NS</span>神经科学</div>
+  <p style="margin-bottom:0;">进攻+防守+反还击要求运动员在极短时间内完成三次动作切换：进攻→格挡→反还击。这涉及<strong>工作记忆</strong>维持多阶目标、<strong>抑制控制</strong>阻止过早反还击、<strong>任务切换</strong>快速更换运动程序。高水平运动员的优势在于：他们的动作切换更自动化，前额叶认知负荷更低，因此能在更短时间内完成更精确的切换。</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">BM</span>生物力学</div>
+  <p style="margin-bottom:0;">弓步复原方向的选择受<strong>重心-支撑面关系</strong>约束。向前复原时，重心继续前移，后腿蹬伸力矩方向不变，有利于二次发力；向后复原时，重心回撤，后腿需要改变蹬伸方向，恢复时间更长，但为远距离防守提供了空间。两种复原方向的力学代价不同，选择取决于对手的还击模式和己方的技术特点。</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">ML</span>运动技能学习</div>
+  <p style="margin-bottom:0;">进攻+防守+反还击是一个<strong>动作序列学习</strong>问题。初学者往往将三个阶段作为独立动作分别学习，导致切换时有明显停顿；高水平运动员则将整个序列作为一个<strong>组块</strong>（chunk）进行练习，使三个阶段自动化衔接。训练的关键是：从分解练习开始，逐步过渡到整体序列练习，最终在条件实战中随机化对手反应，使序列适应不同情境。</p>
+</div>
+
+<h2 id="zh-7">13.1.7 训练启示</h2>
+
+<p>对14岁选手，进攻+防守+反还击的组合训练应从以下方面入手：</p>
+
+<ol>
+  <li><strong>分解练习</strong>：先分别练习进攻、格挡、反还击三个动作，确保每个动作技术正确。</li>
+  <li><strong>两段衔接</strong>：先练习进攻→格挡，再练习格挡→反还击，逐步建立衔接感。</li>
+  <li><strong>整体序列</strong>：将进攻+防守+反还击作为一个完整序列练习，教练固定喂招，运动员完成整个序列。</li>
+  <li><strong>条件实战</strong>：只允许通过进攻+防守+反还击序列得分，直接进攻或直接反还击不得分。强制建立序列意识。</li>
+  <li><strong>对手反应随机化</strong>：教练随机选择防守模式（直接防守、划圆防守、转移还击、相对速度还击），运动员根据对手反应选择反还击线路。</li>
+  <li><strong>视频分析</strong>：统计自己在比赛中的进攻后反还击成功率，分析失败案例的线路选择和距离控制问题。</li>
+  <li><strong>体能支撑</strong>：进攻+防守+反还击对下肢爆发力和肩肘腕耐力要求较高，需要配套的专项体能训练。</li>
+</ol>
+
+<h2 id="zh-8">13.1.8 与已发表研究的对话</h2>
+
+<p>已有击剑研究使用T-pattern和极坐标分析揭示了精英花剑运动员的行为序列模式。进攻+防守+反还击在行为序列中表现为一个<strong>三阶组块</strong>，其成功依赖于三个阶段的无缝衔接。研究表明，高水平运动员在进攻被格挡后的反还击启动时间显著短于新手，且他们的反还击线路选择更符合对手身体位置的约束。此外，视觉搜索研究显示，高水平运动员在进攻后能够更快地将注意力从自己的进攻动作转移到对手的防守和还击动作上，这是他们能够快速反还击的重要原因。</p>
+
+<h2 id="zh-9">13.1.9 模型边界</h2>
+
+<p>进攻+防守+反还击的博弈论模型假设运动员是理性的，且对手防守模式分布稳定。然而，实战中对手可能改变防守模式、裁判对优先权的判定存在主观性，且进攻被格挡后的身体位置和距离是高度动态的。此外，组合技术的个性化意味着没有一套组合是普适的——模型能提供一般性框架，但不能替代针对个体运动员的定制化设计。模型能解释组合技术的结构，但不能替代实战中的直觉与临场应变。</p>
+
+<div class="summary">
+  <strong>小结：</strong>组合技术是具有个性化特点的，进攻+防守+反还击是其中最核心的一类。当进攻被对手防住后，立即转为反还击，是整个序列的核心逻辑。己方需要根据弓步复原方向（向前或向后）和对手防守模式（直接防守、划圆防守、转移还击、相对速度还击）选择反还击线路和手法。无论进攻后弓步的前收还是向后回收，应快速并针对对手直接还击做迅速的防守，反还击要根据距离和对手身体位置来选择攻击点和手法。数学物理提供形式化框架，神经科学解释决策机制，运动技能学习支撑训练设计，数据科学优化对手建模。四者合一，方能在剑道上实现“进攻不是终点，而是序列的起点”。
+</div>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<!-- ==================== 英文版 ==================== -->
+<div class="en-section">
+
+<h1>13.1 Complex Sequences: Seamless Attack–Parry–Counter-Riposte Combination Plays</h1>
+<div class="subtitle">Complex Sequences: Seamless Attack–Parry–Counter-Riposte Combination Plays</div>
+
+<div class="toc">
+  <div class="toc-title">Section Structure</div>
+  <ol>
+    <li><a href="#en-1">The Individualized Principle of Combination Techniques</a></li>
+    <li><a href="#en-2">Attack + Defense + Counter-Riposte: The Logic of Offensive-Defensive Integration</a></li>
+    <li><a href="#en-3">Own Side: Two Scenarios for Counter-Riposte After Attack</a></li>
+    <li><a href="#en-4">Opponent: Four Modes of Defense and Riposte</a></li>
+    <li><a href="#en-5">Analysis: General Patterns in Actual Combat and Response Principles</a></li>
+    <li><a href="#en-6">Multidisciplinary Analytical Framework</a></li>
+    <li><a href="#en-7">Training Implications</a></li>
+    <li><a href="#en-8">Dialogue with Published Research</a></li>
+    <li><a href="#en-9">Model Boundaries</a></li>
+  </ol>
+</div>
+
+<p>Combination techniques are characterized by individualization. Based on the athlete's physiological conditions, physical qualities, psychological characteristics, and basic technical features, footwork, attack, defense, counterattack, and counter-riposte are combined to establish an individualized combination technique. This section focuses on one of the most core categories: the seamless combination of <strong>attack + defense + counter-riposte</strong>. This is a combination technique formulated through an offensive-defensive integration strategy: when the attack is parried by the opponent, one should immediately transition into a counter-riposte.</p>
+
+<h2 id="en-1">13.1.1 The Individualized Principle of Combination Techniques</h2>
+
+<p>Combination techniques are not a simple superposition of basic techniques, but the result of organic construction based on the athlete's individual characteristics. The basis for this construction includes:</p>
+
+<ul>
+  <li><strong>Physiological conditions</strong>: height, arm span, lower-limb explosive power, shoulder-elbow-wrist endurance;</li>
+  <li><strong>Physical qualities</strong>: speed, agility, flexibility, core stability;</li>
+  <li><strong>Psychological characteristics</strong>: risk preference, decision speed, stress tolerance, attention style;</li>
+  <li><strong>Basic technical features</strong>: preferred lines, parry preferences, footwork rhythm, blade control ability.</li>
+</ul>
+
+<p>On this basis, basic techniques such as footwork, attack, defense, counterattack, and counter-riposte are combined to form a fixed technical form that suits the individual athlete. The individualization of combination techniques means that no single combination is universal—the same attack + defense + counter-riposte combination may require different footwork rhythms, different parry position choices, and different counter-riposte lines for different athletes.</p>
+
+<p>From a mathematical physics perspective, the individualized construction of combination techniques is a <strong>constrained optimization problem</strong>: under the constraints of the athlete's physical, technical, and psychological parameters, find the technical combination sequence that maximizes expected scoring. Different athletes have different parameter spaces, and thus different optimal combinations.</p>
+
+<h2 id="en-2">13.1.2 Attack + Defense + Counter-Riposte: The Logic of Offensive-Defensive Integration</h2>
+
+<p>This is a combination technique formulated through an offensive-defensive integration strategy: attack and defense combined. When the attack is parried by the opponent, one should immediately transition into a counter-riposte.</p>
+
+<p>The core logic of this combination is: <strong>The attack is not the endpoint, but the starting point of the entire sequence.</strong> The purpose of the attack is not only to score directly, but also to force the opponent into a defensive reaction, thereby creating a predictable line and time window for the subsequent counter-riposte. The attack being parried is not a failure, but a signal that the sequence has entered its second stage.</p>
+
+<blockquote>In game-theoretic terms, attack + defense + counter-riposte is a <strong>three-stage sequential game</strong>: in stage one you choose the attack line, in stage two the opponent chooses the defensive method, and in stage three you choose the counter-riposte line based on the opponent's defense. The payoff matrix depends on the hit probability at each stage and the priority decision.</blockquote>
+
+<h2 id="en-3">13.1.3 Own Side: Two Scenarios for Counter-Riposte After Attack</h2>
+
+<p>If the lunge attack is too violent, the counter-riposte becomes difficult. There are two scenarios for counter-riposte after attack:</p>
+
+<h4>Scenario One: Forward Lunge Recovery, Transitioning into Close-Range Counter-Riposte</h4>
+
+<p>After the attack, the lunge recovers forward and rapidly transitions into a close-range counter-riposte, or is immediately followed by continuous lunge pursuit. This scenario applies when:</p>
+
+<ul>
+  <li>The opponent habitually makes direct ripostes at close range;</li>
+  <li>The opponent recovers slowly after parrying;</li>
+  <li>One possesses strong close-quarters blade control ability.</li>
+</ul>
+
+<p>From a biomechanical perspective, forward lunge recovery means the center of gravity continues to move forward, providing the mechanical basis for close-range counter-riposte: the rear leg still has the capacity for a second push-off, the weapon hand is still within effective attacking range, and the center of gravity has not fully crossed the support base, allowing rapid completion of the parry and counter-riposte.</p>
+
+<h4>Scenario Two: Backward Lunge Recovery, Creating Distance</h4>
+
+<p>After the attack, the lunge recovers backward, creating distance and preparing to respond to the opponent's riposte. This scenario applies when:</p>
+
+<ul>
+  <li>The opponent habitually makes disengage ripostes or relative-speed ripostes at long range;</li>
+  <li>One's close-quarters blade control ability is relatively weak;</li>
+  <li>One needs time to re-establish distance and rhythm.</li>
+</ul>
+
+<p>From a kinematic perspective, backward lunge recovery means the center of gravity withdraws, providing space for long-range defensive counterattack: the opponent's direct riposte is difficult to land at long range, and one has time to observe the opponent's riposte line and react.</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>Game Theory Perspective</div>
+  <p style="margin-bottom:0;">The choice of recovery direction after attack is a <strong>signaling game</strong>: forward recovery sends the signal "I am preparing for close-range counter-riposte," while backward recovery sends the signal "I am preparing for long-range defense." The opponent will adjust their riposte method based on this signal. Therefore, the choice of recovery direction itself can be part of tactical deception—you can recover forward but prepare for long-range defense, or recover backward but prepare for close-range pursuit.</p>
+</div>
+
+<h2 id="en-4">13.1.4 Opponent: Four Modes of Defense and Riposte</h2>
+
+<p>The opponent's defense (riposte) also has four modes:</p>
+
+<h4>Mode One: Direct Parry Only</h4>
+
+<p>The opponent only makes a direct parry without additional variation. In this mode, one's counter-riposte can target the opponent's direct riposte line after the parry, performing a predictive defense and counter-riposte.</p>
+
+<h4>Mode Two: Circular Parry</h4>
+
+<p>For close-range situations, the effect usually depends on speed; a circular parry is adopted, responding with a fast, direct counterattack, i.e., quarte parry-riposte to the quarte line. In this mode, one needs to quickly identify the opponent's circular direction and complete the counter-riposte before the opponent's circle is completed.</p>
+
+<h4>Mode Three: Disengage Riposte and Cross Riposte</h4>
+
+<p>In special situations, disengage ripostes and cross ripostes are also used. In this mode, one needs to maintain a longer distance to have enough time to observe changes in the opponent's riposte line.</p>
+
+<h4>Mode Four: Disengage Riposte and Relative-Speed Riposte</h4>
+
+<p>When long-range ripostes and direct ripostes are difficult to succeed with, disengage ripostes and relative-speed ripostes are often used. In this mode, one needs to control distance to prevent the opponent from using relative-speed advantage to complete the riposte.</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">DA</span>Data Science Perspective</div>
+  <p style="margin-bottom:0;">The opponent's defense mode distribution can be statistically analyzed through video annotation of bouts. For example, statistically analyze the opponent's defensive choice probabilities under specific attack lines: direct parry 40%, circular parry 30%, disengage riposte 20%, relative-speed riposte 10%. Based on this distribution, one can optimize the counter-riposte line selection to maximize expected payoff. This is precisely the application of "factor analysis" from quantitative trading to fencing.</p>
+</div>
+
+<h2 id="en-5">13.1.5 Analysis: General Patterns in Actual Combat and Response Principles</h2>
+
+<p>The above reactions of both sides are situations that frequently occur in actual combat, i.e., general patterns in actual combat. Attention should be paid to the common patterns of counter-riposte after attack.</p>
+
+<p>Regardless of whether the lunge recovers forward or backward after the attack, one should quickly and specifically defend against the opponent's direct riposte. The counter-riposte should select the attack point and technique based on distance and the opponent's body position.</p>
+
+<p>Specific response principles include:</p>
+
+<ol>
+  <li><strong>Rapid identification</strong>: After the attack is parried, immediately read the opponent's riposte line and body position;</li>
+  <li><strong>Distance adaptation</strong>: Use direct counter-riposte at close range, and disengage or relative-speed counter-riposte at long range;</li>
+  <li><strong>Line selection</strong>: Choose the attack point based on the opponent's body position—attack the outside when the opponent's torso leans inside, attack the inside when it leans outside;</li>
+  <li><strong>Technique selection</strong>: Use press or bind counter-riposte at close range, and disengage or beat counter-riposte at long range;</li>
+  <li><strong>Priority maintenance</strong>: Maintain stable weapon-hand extension and forward body pressure during the counter-riposte to ensure the referee sees proactive control.</li>
+</ol>
+
+<h2 id="en-6">13.1.6 Multidisciplinary Analytical Framework</h2>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>Mathematical Physics</div>
+  <p style="margin-bottom:0;">Attack + defense + counter-riposte can be formalized as a <strong>three-stage Markov decision process</strong>. States include: distance, opponent posture, blade position, score. Actions include: attack line selection, recovery direction selection, counter-riposte line selection. Transition probabilities depend on the opponent's defensive reaction distribution. The optimal strategy is solved through dynamic programming, with the goal of maximizing expected scoring over the entire bout. This framework is mathematically isomorphic to <strong>multi-stage execution algorithms</strong> (such as VWAP, TWAP) in quantitative trading.</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">NS</span>Neuroscience</div>
+  <p style="margin-bottom:0;">Attack + defense + counter-riposte requires the fencer to complete three action switches in an extremely short time: attack → parry → counter-riposte. This involves <strong>working memory</strong> to maintain multi-stage goals, <strong>inhibitory control</strong> to prevent premature counter-riposte, and <strong>task switching</strong> to rapidly change motor programs. The advantage of high-level fencers is that their action switching is more automatic, with lower prefrontal cognitive load, allowing them to complete more precise switches in a shorter time.</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">BM</span>Biomechanics</div>
+  <p style="margin-bottom:0;">The choice of lunge recovery direction is constrained by the <strong>center-of-gravity–support-base relationship</strong>. During forward recovery, the center of gravity continues to move forward, the rear leg's push-off torque direction remains unchanged, facilitating a second push-off; during backward recovery, the center of gravity withdraws, the rear leg needs to change its push-off direction, requiring a longer recovery time but providing space for long-range defense. The mechanical costs of the two recovery directions differ, and the choice depends on the opponent's riposte mode and one's own technical characteristics.</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">ML</span>Motor Learning</div>
+  <p style="margin-bottom:0;">Attack + defense + counter-riposte is an <strong>action sequence learning</strong> problem. Beginners often learn the three stages as separate actions, resulting in noticeable pauses during switching; high-level fencers practice the entire sequence as a <strong>chunk</strong>, making the three stages automatically connected. The key to training is: start with decomposed practice, gradually transition to whole-sequence practice, and finally randomize opponent reactions in conditional bouting to make the sequence adaptable to different situations.</p>
+</div>
+
+<h2 id="en-7">13.1.7 Training Implications</h2>
+
+<p>For a 14-year-old fencer, combination training for attack + defense + counter-riposte should begin with the following:</p>
+
+<ol>
+  <li><strong>Decomposed practice</strong>: First practice attack, parry, and counter-riposte separately to ensure each action is technically correct.</li>
+  <li><strong>Two-stage connection</strong>: First practice attack → parry, then parry → counter-riposte, gradually building a sense of connection.</li>
+  <li><strong>Whole sequence</strong>: Practice attack + defense + counter-riposte as a complete sequence, with the coach feeding fixed actions while the fencer completes the entire sequence.</li>
+  <li><strong>Conditional bouting</strong>: Only the attack + defense + counter-riposte sequence can score; direct attacks or direct counter-ripostes do not count. This forcibly builds sequence awareness.</li>
+  <li><strong>Randomized opponent reactions</strong>: The coach randomly selects defense modes (direct parry, circular parry, disengage riposte, relative-speed riposte), and the fencer selects the counter-riposte line based on the opponent's reaction.</li>
+  <li><strong>Video analysis</strong>: Statistically analyze one's own counter-riposte success rate after attack in competition, and analyze line selection and distance control issues in failed cases.</li>
+  <li><strong>Physical support</strong>: Attack + defense + counter-riposte places high demands on lower-limb explosive power and shoulder-elbow-wrist endurance, requiring supporting specialized physical training.</li>
+</ol>
+
+<h2 id="en-8">13.1.8 Dialogue with Published Research</h2>
+
+<p>Existing fencing studies have used T-pattern and polar coordinate analysis to reveal behavioral sequence patterns in elite foil fencers. Attack + defense + counter-riposte appears in behavioral sequences as a <strong>three-stage chunk</strong>, and its success depends on the seamless connection of the three stages. Research shows that high-level fencers have significantly shorter counter-riposte initiation times after their attack is parried than novices, and their counter-riposte line selection better conforms to the constraints of the opponent's body position. In addition, visual search research shows that high-level fencers can more quickly shift attention from their own attacking action to the opponent's defensive and riposte actions after attacking, which is an important reason for their ability to counter-riposte rapidly.</p>
+
+<h2 id="en-9">13.1.9 Model Boundaries</h2>
+
+<p>The game-theoretic model of attack + defense + counter-riposte assumes that fencers are rational and that the opponent's defense mode distribution is stable. In actual bouts, however, the opponent may change defense modes, the referee's judgment of priority may be subjective, and the body position and distance after the attack is parried are highly dynamic. In addition, the individualization of combination techniques means that no single combination is universal—the model can provide a general framework but cannot replace customized design for individual athletes. The model can explain the structure of combination techniques, but it cannot replace intuition and live adaptation in actual fencing.</p>
+
+<div class="summary">
+  <strong>Summary:</strong> Combination techniques are characterized by individualization, and attack + defense + counter-riposte is one of the most core categories. When the attack is parried by the opponent, immediately transitioning into a counter-riposte is the core logic of the entire sequence. One must select the counter-riposte line and technique based on the lunge recovery direction (forward or backward) and the opponent's defense mode (direct parry, circular parry, disengage riposte, relative-speed riposte). Regardless of whether the lunge recovers forward or backward after the attack, one should quickly and specifically defend against the opponent's direct riposte, and the counter-riposte should select the attack point and technique based on distance and the opponent's body position. Mathematical physics provides a formal framework, neuroscience explains the decision mechanism, motor learning supports training design, and data science optimizes opponent modeling. Only when these four are integrated can a fencer achieve on the piste the ability to "make the attack not the endpoint, but the starting point of the sequence."
+</div>
+
+</div><!-- /en-section -->
+
+</div><!-- /container -->
+</body>
+</html>
