@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12.2 假动作与引诱 | Feints &amp; Invitations</title>
+<style>
+  :root {
+    --text: #1a1a1a;
+    --muted: #555;
+    --accent: #8b0000;
+    --border: #ddd;
+    --bg: #fafafa;
+    --en-accent: #003366;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Georgia", "Songti SC", "SimSun", serif;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 32px 120px;
+    background: #fff;
+  }
+
+  h1 {
+    font-size: 1.9em;
+    color: var(--accent);
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 12px;
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 1.1em;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 1.4em;
+    color: var(--accent);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+  }
+
+  h3 {
+    font-size: 1.15em;
+    color: #333;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  h4 {
+    font-size: 1.05em;
+    color: #444;
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 0 0 16px;
+    text-align: justify;
+  }
+
+  ol, ul {
+    margin: 0 0 16px;
+    padding-left: 28px;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  strong {
+    color: #000;
+    font-weight: 700;
+  }
+
+  em {
+    color: var(--muted);
+  }
+
+  blockquote {
+    border-left: 3px solid var(--border);
+    margin: 20px 0;
+    padding: 12px 20px;
+    background: #f8f8f8;
+    color: #333;
+    font-style: italic;
+  }
+
+  .box {
+    background: #f8f8f8;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .box-title {
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .dimension {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.78em;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .divider {
+    text-align: center;
+    color: var(--muted);
+    margin: 48px 0;
+    font-size: 1.2em;
+    letter-spacing: 8px;
+  }
+
+  .en-section {
+    border-top: 2px dashed var(--border);
+    margin-top: 60px;
+    padding-top: 40px;
+  }
+
+  .en-section h1 {
+    color: var(--en-accent);
+    border-bottom-color: var(--en-accent);
+  }
+
+  .en-section h2 {
+    color: var(--en-accent);
+    border-left-color: var(--en-accent);
+  }
+
+  .en-section h3 {
+    color: #1a3a5c;
+  }
+
+  .en-section .dimension {
+    background: var(--en-accent);
+  }
+
+  .en-section .box-title {
+    color: var(--en-accent);
+  }
+
+  .summary {
+    background: #fdf6e3;
+    border: 1px solid #e0c97f;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 32px 0;
+  }
+
+  .summary strong {
+    color: var(--accent);
+  }
+
+  .en-section .summary strong {
+    color: var(--en-accent);
+  }
+
+  .toc {
+    background: #f4f4f4;
+    border-radius: 6px;
+    padding: 20px 28px;
+    margin-bottom: 40px;
+  }
+
+  .toc-title {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .toc a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .term {
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 32px 18px 80px; }
+    h1 { font-size: 1.5em; }
+    h2 { font-size: 1.2em; }
+    body { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== 中文版 ==================== -->
+<h1>12.2 假动作与引诱：制造虚假信号以引出特定对手剑的反应</h1>
+<div class="subtitle">Feints &amp; Invitations: Creating False Signals to Draw Out Specific Opponent Blade Reactions</div>
+
+<div class="toc">
+  <div class="toc-title">本节结构</div>
+  <ol>
+    <li><a href="#zh-1">实战技术的分类与假动作的定位</a></li>
+    <li><a href="#zh-2">手上假动作</a>
+      <ul>
+        <li><a href="#zh-2-1">假直刺</a></li>
+        <li><a href="#zh-2-2">假压剑与假击打</a></li>
+        <li><a href="#zh-2-3">假防守</a></li>
+        <li><a href="#zh-2-4">假反攻</a></li>
+      </ul>
+    </li>
+    <li><a href="#zh-3">脚步或身体姿势假动作</a>
+      <ul>
+        <li><a href="#zh-3-1">假跃步接防守还击或转化为真跃步进攻</a></li>
+        <li><a href="#zh-3-2">向前急停接防守还击或反攻</a></li>
+        <li><a href="#zh-3-3">假后退真向前反攻</a></li>
+      </ul>
+    </li>
+    <li><a href="#zh-4">引诱动作</a>
+      <ul>
+        <li><a href="#zh-4-1">有意暴露有效部位</a></li>
+        <li><a href="#zh-4-2">向前有意过敏防守</a></li>
+        <li><a href="#zh-4-3">有意给对手抢攻和反攻造时机</a></li>
+      </ul>
+    </li>
+    <li><a href="#zh-5">多学科分析框架</a></li>
+    <li><a href="#zh-6">训练启示</a></li>
+    <li><a href="#zh-7">与已发表研究的对话</a></li>
+    <li><a href="#zh-8">模型边界</a></li>
+  </ol>
+</div>
+
+<p>实战技术是针对实战条件中经常出现的情况所需要运用的技术动作，是基本技术实用化发展和组合起来所形成的一种相应固定的技术形式，包括：<strong>欺骗技术、实用技术、近战技术、组合技术</strong>。本节聚焦于欺骗技术中的两大核心类别：<strong>假动作</strong>与<strong>引诱动作</strong>。假动作是运用技术动作来引导对方产生我方需要的反应，加以利用以达到我方战术意图的动作；引诱动作则是有意将自己的有效部位暴露出来，诱使对手攻击，其实已经做好在对手攻击时应采取的相应对策。</p>
+
+<h2 id="zh-1">12.2.1 实战技术的分类与假动作的定位</h2>
+
+<p>实战技术是基本技术在实战条件下的实用化发展与组合，形成了相对固定的技术形式。它分为四大类：</p>
+
+<ul>
+  <li><strong>欺骗技术</strong>：通过虚假信号引导对手做出错误反应，包括假动作与引诱动作；</li>
+  <li><strong>实用技术</strong>：在实战中直接有效的技术动作；</li>
+  <li><strong>近战技术</strong>：在极近距离下的特殊技术；</li>
+  <li><strong>组合技术</strong>：多个技术动作的连续组合。</li>
+</ul>
+
+<p>假动作可以分为两大类：<strong>手上假动作</strong>与<strong>脚步或身体姿势假动作</strong>。引诱动作则包括有意暴露有效部位、向前有意过敏防守、有意给对手抢攻和反攻造时机三种策略。这些策略在实战中往往灵活搭配、变换应用，通过不断调动对方的心理和动作节奏，形成一套巧妙的攻防博弈体系。</p>
+
+<h2 id="zh-2">12.2.2 手上假动作</h2>
+
+<h3 id="zh-2-1">假直刺</h3>
+
+<p>快速伸臂，做出剑尖对准对手有效部位或护手盘的动作，旨在通过精确的剑尖指向和迅速的变化，迫使对手产生瞬间的反应。在短短几毫秒之间打破对手的心理平衡，从而为进攻或防守创造有利的局面。</p>
+
+<p>当伸臂剑尖指向对手的有效部位或护手盘，通常意味着对方的防线受到了威胁。在击剑比赛中，剑尖指向对方的有效部位意味着你正在威胁对方的得分区，其有意或无意中，都会在其心理上造成干扰和压力。通过剑尖指向这些关键区域，击剑者不仅在物理上控制了攻击的空间，还能让对方产生紧迫感和焦虑感。这种“虚拟的进攻”给对方造成一种隐性的压力，即使这并不立刻意味着你会发动攻击。</p>
+
+<p>这一动作的成功与否，关键在于动作的<strong>真实感</strong>和<strong>快速反应的变化</strong>。对手的反应往往取决于他们对你动作的敏感度。如果你只是简单地伸臂并固定剑尖，动作缺乏变化或节奏的起伏，那么对手很可能会保持冷静，防守得更加牢固。因此，击剑者在伸臂指向的同时，需要巧妙地通过<strong>动作深度的变化</strong>来增加欺骗性。假如对手过于敏感，可能会做出提前防守或反击的动作，这时，击剑者可以通过轻微收回或改变攻击的深度，使对方失去预判的机会。</p>
+
+<p>动作深度的变化至关重要，因为它能够打破对方对你行动的预期。如果对方对你的动作变化反应迟缓，那么你可以加大攻击的深度和力度，迅速打破对方的防线，达到出奇制胜的效果。此外，动作的<strong>突然性</strong>也是这一战术的核心之一。通过快速的、看似突然的剑尖指向，击剑者不仅能够通过视觉上的刺激打乱对方的节奏，还能制造出心理上的惊慌，使对手不自觉地做出过度反应或错误判断。</p>
+
+<p>假直刺后可转移进攻、相对速度进攻、压剑进攻及防守还击和反攻。</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">NS</span>神经科学视角</div>
+  <p style="margin-bottom:0;">假直刺的突然性利用了对手的<strong>惊跳反射</strong>和<strong>定向反应</strong>。突然的视觉刺激会激活杏仁核，引发快速的防御性反应，而这一反应往往早于前额叶的理性判断。对手在“虚拟进攻”面前产生的瞬间焦虑，正是心理平衡被打破的神经标志。高水平的击剑者能够通过训练抑制自身的惊跳反应，同时对对手施加这种反应。</p>
+</div>
+
+<h3 id="zh-2-2">假压剑与假击打</h3>
+
+<p>先给对手一个击打或压剑动作刺激，目的要引起对手摆脱动作而使对手进入战术动作圈套，以相应战术动作击中对手。这种假动作能使对手攻击的动作范围缩小，有利于执行预想的战术。</p>
+
+<p>假压剑是通过制造压剑动作的假象，迫使对手做出某种反应，通常是用来限制对方的进攻方向。压剑本身是一种防守动作，指的是通过自己的剑刃与对方的剑刃接触，将其逼迫偏离其自己防守的有效区。利用压迫心理，让其动作变形，进而使对手攻击的动作可选范围缩小。</p>
+
+<p>举个例子：假设对手可以从四条不同的进攻线路上进行攻击，当你采取第四防守动作，通过假压剑迫使对方做出反应时，对手往往会选择从一个固定的方向摆脱（比如第六姿势线）。这个摆脱方向是你预设的，并且不适合对手自由选择其他的攻击线路。这样，假压剑通过限制对手的动作范围，为你后续的攻击行动提供了空间和时机。左手持剑的运动员常用第七压剑接第四对抗刺成功率较高，也是这个原因。</p>
+
+<p>假击打则是通过模拟实际击打的动作来迷惑对手。这种战术的关键是通过伪装和快速变化来制造“真击打”的错觉，诱使对方在错误的时机做出防守或反击，进而为你创造进攻机会。假击打的一个常见例子是模拟一次强烈的攻击，但实际上并没有用足全力，目的仅仅是引导对方做出过度的防守反应。</p>
+
+<p>这些假动作不仅能够在短时间内打乱对方的节奏，还能通过制造虚假的威胁，引发对方的紧张或焦虑，使他们进入一种过度防守的状态。例如，当你做出一个假击打时，对手可能会误以为你会立刻攻击，并进行过度的防守动作，或者是陷入防守思维中。此时，你可以在他们防守过于集中某一位置时，迅速变换方向，打破对方的防线。</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>博弈论视角</div>
+  <p style="margin-bottom:0;">假压剑与假击打的核心机制是<strong>限制对手的策略空间</strong>。在博弈论中，这相当于通过一个动作改变对手的可行策略集，使其从四条可能的摆脱线路缩减为一条可预测的线路。这种“策略集压缩”是高级战术的典型特征：不是直接得分，而是先降低对手的选择自由度，再在缩小的空间内完成打击。</p>
+</div>
+
+<h3 id="zh-2-3">假防守</h3>
+
+<p>针对对手的假动作做出假的防守反应动作，使对方误以为已找到突破口，从而做出真正的进攻决定。待对手实施真正的进攻时，自己能够迅速改变自己的战术意图，进行反攻或采取反方向的防守动作，打破对方的攻击节奏，并抓住机会进行反击。</p>
+
+<p>这一战术的核心是<strong>心理博弈</strong>和<strong>时机的精准掌控</strong>。当对手使用假动作时，他们的目的通常是为了引导你做出不当的防守反应，从而在你防守不严密的地方进行突破。而作为应对，击剑者首先需要判断出对方的假动作和真实意图之间的差异，然后通过迅速反应，实施虚假防守动作，诱使对方误判情况。</p>
+
+<h3 id="zh-2-4">假反攻</h3>
+
+<p>在对手做假动作时，采取假反攻的动作。当对手发出真进攻时就改变为防守；当对手犹豫不决时，就转化为真实的进攻动作；或者假进攻，进入自己的战术方案节奏中。</p>
+
+<p>假反攻是一种<strong>多分支决策</strong>的战术结构，其核心是根据对手的实时反应选择不同的后续动作。这种战术要求运动员同时维持多个动作计划，并在对手反应出现的瞬间快速切换。</p>
+
+<h2 id="zh-3">12.2.3 脚步或身体姿势假动作</h2>
+
+<h3 id="zh-3-1">假跃步接防守还击或转化为真跃步进攻</h3>
+
+<p>相较于正确的真实的跃步，假跃步的前脚动作较大，跃前脚，后脚不动是做假跃步。当对手做出反应，比如抢攻或反攻就能立即接防守还击。当对手不做反应，假跃步就能变成真跃步，这就是要求跃步前脚着地和后脚落地在同一瞬间完成。为了让真假跃步使对手难以判断，可使用跳步突然快速接近对手做出攻击。</p>
+
+<h3 id="zh-3-2">向前急停接防守还击或反攻</h3>
+
+<p>快速向前造成对手匆忙应战，迫使对手做出抢攻或反攻，突然急停做出防守还击或反攻。</p>
+
+<h3 id="zh-3-3">假后退真向前反攻</h3>
+
+<p>先用后退避开对手距离进攻，使对手产生追击，当对手用向前发动真实进攻时，比如在其前进步法接弓步进攻时，采用躯干向后一撤造成对手错觉（对方进攻时会注意力集中在自己的得分区域上——躯干部分的位置——对其影响极大，容易产生误导），突然快速向前破坏距离反攻。</p>
+
+<p>随着对动作细节的掌握，发力方式的理解，甚至可以仅仅通过发力的改变，就可以造成动作上的实质性的不同，这样的假动作外表根本无法判断。</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">BM</span>生物力学视角</div>
+  <p style="margin-bottom:0;">假跃步的关键在于<strong>前脚动作的真实性与后脚的不动</strong>形成矛盾信号。对手读取到前脚的跃步意图，但后脚的静止又暗示动作未真正启动。这种矛盾信号迫使对手在“反应”与“等待”之间犹豫，而犹豫本身就是战术目标。假后退真向前反攻则利用了<strong>躯干后撤的视觉误导</strong>，使对手对距离的判断产生偏差，从而在错误的距离上发动进攻。</p>
+</div>
+
+<h2 id="zh-4">12.2.4 引诱动作</h2>
+
+<p>引诱动作是有意将自己的有效部位暴露出来，诱使对手攻击，其实已经做好在对手攻击时应采取的相应对策。包括：有意暴露有效部位，向前有意过敏防守，有意给对手抢攻和反攻造时机等。</p>
+
+<h3 id="zh-4-1">有意暴露有效部位</h3>
+
+<p>采用特定的肢体语言或动作来设下“陷阱”，在实战中有意做出比如斜剑下垂之类的动作，甚至让自身的防守位置看似有所松懈，暴露有效部位来引诱对手进攻。攻击者会认为自己找到了一个暴露的空隙，进而做出进攻动作。然而，这种看似有机可乘的状态背后隐藏着精妙的反击设计。当对方做出攻击动作的瞬间，防守方通过精准的反应，迅速调整并实施反击。</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>博弈论视角</div>
+  <p style="margin-bottom:0;">有意暴露有效部位是一种<strong>信号博弈</strong>中的“诱饵信号”。你发送一个看似对己不利的信号（暴露空档），但这个信号实际上是有成本的——你必须有足够的能力在对手攻击时完成反击。如果对手相信这个信号并发动攻击，他就进入了你的预设陷阱；如果对手识破信号，你则暴露了真实意图。这种博弈的均衡取决于你反击能力与对手判断力之间的对比。</p>
+</div>
+
+<h3 id="zh-4-2">向前有意过敏防守</h3>
+
+<p>在实际比赛中，有时运动员会通过“有意的防守过敏”来营造假象，即在一开始时，故意让对方觉得自己因为防守暴露了某个区域，容易被攻击。这种策略也可结合规律性动作使用。比如，防守方规律性地使用划圆的第四防守动作。此时对方会习惯性地认为第四防守动作是防线的“常规手段”，并准备在圆周的某个点进行破防。然而，当对手试图从破圆进攻时，防守方立即进行二次甚至三次快速的手臂回收动作，连续使用防守动作，通过速度的优势超越对方反击，从而击败对手。</p>
+
+<p>这种防守上的“反过敏”技巧不仅要求运动员对自身节奏的精准控制，还需要对对方攻击习惯是否因此建立的高度敏感观察。</p>
+
+<h3 id="zh-4-3">有意给对手抢攻和反攻造时机</h3>
+
+<p>根据对手的特点，有意做出一些似乎对手容易抢攻和反攻的动作，甚至有时可使对手成功一剑，再针对对手动作做出相应破抢攻和反攻动作，这在重剑和佩剑比赛中运用较多。</p>
+
+<p>以上三种策略在实战中往往是灵活搭配、变换应用的，通过不断调动对方的心理和动作节奏，形成一套巧妙的攻防博弈体系。</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">PP</span>心理生理学视角</div>
+  <p style="margin-bottom:0;">有意给对手抢攻和反攻造时机，本质上是利用对手的<strong>行动偏见</strong>（action bias）：在不确定局面下，人类倾向于采取行动而非等待。通过制造“似乎容易抢攻”的局面，你激活了对手的行动冲动。即使对手成功一剑，你获取了关于其攻击模式的信息，为后续的针对性破反攻奠定了基础。这种“用一分买信息”的策略，在重剑和佩剑中尤为常见。</p>
+</div>
+
+<h2 id="zh-5">12.2.5 多学科分析框架</h2>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">NS</span>神经科学</div>
+  <p style="margin-bottom:0;">假动作与引诱动作的核心神经机制是<strong>预测编码</strong>与<strong>预测误差</strong>。对手的大脑持续预测你的下一步动作，当你发送一个与预测不符的信号时，就会产生预测误差，引发注意力和反应的重新分配。假动作正是通过制造预测误差来打破对手的预判模型。高水平击剑者的优势在于：他们的预测模型更精确，能够在更短时间内识别虚假信号并更新预测。</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>数学物理</div>
+  <p style="margin-bottom:0;">假动作与引诱动作可以形式化为<strong>信号博弈</strong>。发送者（击剑者A）选择一个信号（假动作类型），接收者（对手B）观察信号并选择一个反应，然后A根据B的反应选择终结方式。信号可以是“廉价”的（假动作）或“有成本”的（引诱动作中真实暴露空档）。均衡策略取决于信号成本、对手反应分布和终结动作的期望收益。</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">DA</span>数据科学</div>
+  <p style="margin-bottom:0;">通过比赛视频标注，可以建立对手的“信号-反应”概率矩阵。例如，统计对手面对假直刺时4号格挡的概率、面对暴露空档时发动进攻的概率、面对假跃步时抢攻的概率。这些数据可以优化假动作和引诱动作的设计，使战术选择从经验直觉转向数据驱动。</p>
+</div>
+
+<h2 id="zh-6">12.2.6 训练启示</h2>
+
+<p>对14岁选手，假动作与引诱动作训练应从以下方面入手：</p>
+
+<ol>
+  <li><strong>单一假动作训练</strong>：教练指定一种假动作（如假直刺），反复练习其与后续真实动作的衔接，直到自动化。</li>
+  <li><strong>真假判断训练</strong>：教练随机发出真动作或假动作，运动员需要判断并做出正确反应。培养对真假信号的识别能力。</li>
+  <li><strong>条件实战</strong>：只允许通过假动作或引诱动作得分，直接进攻不得分。强制建立欺骗意识。</li>
+  <li><strong>反应分布统计</strong>：让运动员记录对手在特定假动作下的反应，建立个人数据库，为战术设计提供依据。</li>
+  <li><strong>心理训练</strong>：假动作要逼真，但不能锁死自己重心；引诱动作要自然，不能让对手看出“故意”。</li>
+  <li><strong>视频分析</strong>：观看高水平比赛，暂停在假动作和引诱动作发生的瞬间，分析运动员的意图、动作执行和对手反应。</li>
+</ol>
+
+<h2 id="zh-7">12.2.7 与已发表研究的对话</h2>
+
+<p>已有击剑研究使用T-pattern和极坐标分析揭示了精英花剑运动员的行为序列模式。假动作和引诱动作在行为序列中表现为“信号-反应-终结”的三阶结构，其成功依赖于对手反应的可预测性和运动员的切换速度。研究表明，高水平运动员在假动作后的转换速度显著快于新手，且他们的假动作更难以被对手预判。此外，视觉搜索研究显示，高水平运动员能够更有效地利用周边视觉监测对手的剑和身体动作，这使他们能够在假动作的同时保持对全局空间的感知。</p>
+
+<h2 id="zh-8">12.2.8 模型边界</h2>
+
+<p>假动作与引诱动作的博弈论模型假设运动员是理性的，且对手反应分布稳定。然而，实战中对手可能识破假动作、改变反应模式，或裁判对优先权的判定存在主观性。此外，假动作的微妙之处——如眼神、呼吸、节奏的欺骗——难以完全形式化。模型能解释假动作与引诱动作的结构，但不能替代实战中的直觉与临场应变。引诱动作尤其依赖裁判尺度和对手风格，模型只能提供概率性指导，不能保证必然得分。</p>
+
+<div class="summary">
+  <strong>小结：</strong>假动作与引诱动作是花剑欺骗技术的两大核心类别。假动作通过手上动作（假直刺、假压剑、假击打、假防守、假反攻）或脚步身体动作（假跃步、急停、假后退）制造虚假信号，引导对手做出错误反应；引诱动作则通过有意暴露有效部位、有意过敏防守、有意造抢反攻时机，主动诱使对手进入预设陷阱。两者的共同本质是：<strong>用可控的成本购买对手的反应信息，再利用这一信息完成得分。</strong>神经科学解释预测编码机制，博弈论提供形式化框架，数据科学优化对手建模，训练科学支撑技能习得。四者合一，方能在剑道上实现“让对手按照你的剧本行动”。
+</div>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<!-- ==================== 英文版 ==================== -->
+<div class="en-section">
+
+<h1>12.2 Feints &amp; Invitations: Creating False Signals to Draw Out Specific Opponent Blade Reactions</h1>
+<div class="subtitle">Feints &amp; Invitations: Creating False Signals to Draw Out Specific Opponent Blade Reactions</div>
+
+<div class="toc">
+  <div class="toc-title">Section Structure</div>
+  <ol>
+    <li><a href="#en-1">Classification of Combat Techniques and the Place of Feints</a></li>
+    <li><a href="#en-2">Hand Feints</a>
+      <ul>
+        <li><a href="#en-2-1">False Straight Thrust</a></li>
+        <li><a href="#en-2-2">False Press and False Beat</a></li>
+        <li><a href="#en-2-3">False Parry</a></li>
+        <li><a href="#en-2-4">False Counterattack</a></li>
+      </ul>
+    </li>
+    <li><a href="#en-3">Footwork or Body-Posture Feints</a>
+      <ul>
+        <li><a href="#en-3-1">False Ballestra into Parry-Riposte or Real Ballestra Attack</a></li>
+        <li><a href="#en-3-2">Forward Sudden Stop into Parry-Riposte or Counterattack</a></li>
+        <li><a href="#en-3-3">False Retreat into Forward Counterattack</a></li>
+      </ul>
+    </li>
+    <li><a href="#en-4">Invitations</a>
+      <ul>
+        <li><a href="#en-4-1">Deliberately Exposing the Valid Target</a></li>
+        <li><a href="#en-4-2">Forward Deliberate Over-Sensitive Defense</a></li>
+        <li><a href="#en-4-3">Deliberately Creating Opportunities for Opponent's Attack and Counterattack</a></li>
+      </ul>
+    </li>
+    <li><a href="#en-5">Multidisciplinary Analytical Framework</a></li>
+    <li><a href="#en-6">Training Implications</a></li>
+    <li><a href="#en-7">Dialogue with Published Research</a></li>
+    <li><a href="#en-8">Model Boundaries</a></li>
+  </ol>
+</div>
+
+<p>Combat techniques are the technical actions required for situations that frequently arise under combat conditions. They are a relatively fixed technical form formed by the practical development and combination of basic techniques, including: <strong>deception techniques, practical techniques, close-quarters techniques, and combination techniques</strong>. This section focuses on the two core categories of deception techniques: <strong>feints</strong> and <strong>invitations</strong>. A feint is an action that uses technical movements to guide the opponent into producing the reaction we need, and then exploits it to achieve our tactical intent. An invitation is the deliberate exposure of one's valid target to lure the opponent into attacking, while having already prepared the corresponding countermeasure for when the opponent attacks.</p>
+
+<h2 id="en-1">12.2.1 Classification of Combat Techniques and the Place of Feints</h2>
+
+<p>Combat techniques are the practical development and combination of basic techniques under combat conditions, forming relatively fixed technical forms. They fall into four major categories:</p>
+
+<ul>
+  <li><strong>Deception techniques</strong>: guiding the opponent into an erroneous reaction through false signals, including feints and invitations;</li>
+  <li><strong>Practical techniques</strong>: technical actions that are directly effective in combat;</li>
+  <li><strong>Close-quarters techniques</strong>: special techniques at extremely close distance;</li>
+  <li><strong>Combination techniques</strong>: continuous combinations of multiple technical actions.</li>
+</ul>
+
+<p>Feints can be divided into two major categories: <strong>hand feints</strong> and <strong>footwork or body-posture feints</strong>. Invitations include three strategies: deliberately exposing the valid target, forward deliberate over-sensitive defense, and deliberately creating opportunities for the opponent's attack and counterattack. These strategies are often flexibly combined and alternated in actual combat, constantly manipulating the opponent's psychology and action rhythm to form a clever offensive-defensive game system.</p>
+
+<h2 id="en-2">12.2.2 Hand Feints</h2>
+
+<h3 id="en-2-1">False Straight Thrust</h3>
+
+<p>A rapid extension of the arm, making the point aim at the opponent's valid target or guard, intended to force an instantaneous reaction through precise point direction and rapid variation. In just a few milliseconds, it breaks the opponent's psychological balance, thereby creating a favorable situation for attack or defense.</p>
+
+<p>When the extended arm's point aims at the opponent's valid target or guard, it usually means the opponent's defense line is threatened. In fencing, aiming the point at the opponent's valid target means you are threatening their scoring area, which consciously or unconsciously causes psychological interference and pressure. By aiming the point at these key areas, the fencer not only physically controls the attacking space but also creates a sense of urgency and anxiety in the opponent. This "virtual attack" exerts a hidden pressure on the opponent, even though it does not immediately mean you will launch an attack.</p>
+
+<p>The success of this action depends on the <strong>authenticity</strong> of the movement and the <strong>variation in rapid response</strong>. The opponent's reaction often depends on their sensitivity to your action. If you simply extend the arm and fix the point without variation or rhythm, the opponent will likely remain calm and defend more solidly. Therefore, while extending and aiming, the fencer must cleverly increase deception through <strong>variation in the depth of the action</strong>. If the opponent is overly sensitive and may make an early parry or counterattack, the fencer can slightly withdraw or change the depth of the attack, causing the opponent to lose the opportunity to predict.</p>
+
+<p>Variation in action depth is crucial because it can break the opponent's expectation of your movement. If the opponent reacts slowly to your changes, you can increase the depth and force of the attack, rapidly breaking through their defense for a surprise victory. In addition, the <strong>suddenness</strong> of the action is also one of the cores of this tactic. Through a rapid, seemingly sudden point aim, the fencer can not only disrupt the opponent's rhythm through visual stimulation but also create psychological panic, causing the opponent to unconsciously overreact or misjudge.</p>
+
+<p>After a false straight thrust, one can transition into a disengage attack, relative-speed attack, press attack, parry-riposte, or counterattack.</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">NS</span>Neuroscience Perspective</div>
+  <p style="margin-bottom:0;">The suddenness of the false straight thrust exploits the opponent's <strong>startle reflex</strong> and <strong>orienting response</strong>. A sudden visual stimulus activates the amygdala, triggering a rapid defensive reaction that often precedes rational prefrontal judgment. The momentary anxiety produced in the opponent by the "virtual attack" is the neural signature of psychological balance being disrupted. High-level fencers can suppress their own startle response through training while imposing this response on the opponent.</p>
+</div>
+
+<h3 id="en-2-2">False Press and False Beat</h3>
+
+<p>First give the opponent a beat or press action as a stimulus, with the purpose of causing the opponent to make an evasion action and enter the tactical trap, so as to hit the opponent with the corresponding tactical action. This kind of feint can narrow the range of the opponent's attacking actions, which is conducive to executing the predetermined tactic.</p>
+
+<p>A false press creates the illusion of a press action to force the opponent into a certain reaction, usually to limit the opponent's attacking direction. A press itself is a defensive action, referring to contacting the opponent's blade with one's own blade to force it away from its defensive valid area. By using psychological pressure to deform the opponent's movement, the opponent's available attacking options are narrowed.</p>
+
+<p>For example: suppose the opponent can attack from four different lines. When you adopt a quarte defensive action and force a reaction through a false press, the opponent will often choose to evade in a fixed direction (e.g., the sixte line). This evasion direction is preset by you and is not suitable for the opponent to freely choose other attacking lines. In this way, the false press narrows the opponent's range of action and provides space and timing for your subsequent attack. This is also why left-handed fencers often have a high success rate with a septime press followed by a quarte opposition thrust.</p>
+
+<p>A false beat simulates the action of an actual beat to confuse the opponent. The key to this tactic is creating the illusion of a "real beat" through disguise and rapid variation, inducing the opponent to make a defensive or counterattacking action at the wrong time, thereby creating an attacking opportunity. A common example of a false beat is simulating a strong attack but not using full force, with the sole purpose of inducing an excessive defensive reaction.</p>
+
+<p>These feints can not only disrupt the opponent's rhythm in a short time but also, by creating false threats, trigger tension or anxiety, causing the opponent to enter a state of over-defense. For example, when you make a false beat, the opponent may mistakenly believe you will attack immediately and make an excessive defensive action or fall into a defensive mindset. At this point, you can rapidly change direction while the opponent's defense is concentrated on one position, breaking through their defense line.</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>Game Theory Perspective</div>
+  <p style="margin-bottom:0;">The core mechanism of the false press and false beat is <strong>compressing the opponent's strategy space</strong>. In game theory, this is equivalent to changing the opponent's feasible strategy set through one action, reducing it from four possible evasion lines to one predictable line. This "strategy set compression" is a typical feature of advanced tactics: not scoring directly, but first reducing the opponent's freedom of choice, then completing the strike within the narrowed space.</p>
+</div>
+
+<h3 id="en-2-3">False Parry</h3>
+
+<p>Make a false defensive reaction to the opponent's feint, making the opponent mistakenly believe they have found a breakthrough and thus make a real attacking decision. When the opponent launches the real attack, you can rapidly change your tactical intent, counterattack or adopt a defensive action in the opposite direction, breaking the opponent's attacking rhythm and seizing the opportunity to counterattack.</p>
+
+<p>The core of this tactic is <strong>psychological gameplay</strong> and <strong>precise control of timing</strong>. When the opponent uses a feint, their purpose is usually to guide you into an improper defensive reaction, so as to break through where your defense is not tight. In response, the fencer must first judge the difference between the opponent's feint and true intent, then through rapid reaction, implement a false defensive action to induce the opponent into misjudging the situation.</p>
+
+<h3 id="en-2-4">False Counterattack</h3>
+
+<p>When the opponent makes a feint, adopt a false counterattack action. When the opponent launches a real attack, change to defense. When the opponent hesitates, transform into a real attacking action; or false attack, entering your own tactical plan rhythm.</p>
+
+<p>The false counterattack is a <strong>multi-branch decision</strong> tactical structure, whose core is to choose different follow-up actions based on the opponent's real-time reaction. This tactic requires the fencer to simultaneously maintain multiple action plans and rapidly switch at the moment the opponent's reaction appears.</p>
+
+<h2 id="en-3">12.2.3 Footwork or Body-Posture Feints</h2>
+
+<h3 id="en-3-1">False Ballestra into Parry-Riposte or Real Ballestra Attack</h3>
+
+<p>Compared to a correct, real ballestra, a false ballestra has a larger front-foot action; leaping the front foot while the rear foot does not move is a false ballestra. When the opponent reacts, such as with a preemptive attack or counterattack, one can immediately transition into a parry-riposte. When the opponent does not react, the false ballestra can become a real ballestra, which requires the front foot landing and the rear foot landing to be completed at the same instant. To make the true and false ballestra difficult for the opponent to judge, one can use a jump step to suddenly and rapidly approach the opponent for an attack.</p>
+
+<h3 id="en-3-2">Forward Sudden Stop into Parry-Riposte or Counterattack</h3>
+
+<p>Rapidly move forward to cause the opponent to respond in a hurry, forcing the opponent to make a preemptive attack or counterattack, then suddenly stop to make a parry-riposte or counterattack.</p>
+
+<h3 id="en-3-3">False Retreat into Forward Counterattack</h3>
+
+<p>First retreat to avoid the opponent's distance attack, causing the opponent to pursue. When the opponent launches a real forward attack, such as a forward step into lunge attack, adopt a torso backward withdrawal to create an illusion in the opponent (when attacking, the opponent's attention is focused on their own scoring area—the position of the torso—which has a great influence and is easily misled), then suddenly and rapidly move forward to break the distance and counterattack.</p>
+
+<p>With mastery of movement details and understanding of force generation, it is even possible to create a substantial difference in the action merely through a change in force generation, such that the feint cannot be judged at all from its external appearance.</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">BM</span>Biomechanics Perspective</div>
+  <p style="margin-bottom:0;">The key to the false ballestra is the <strong>contradictory signal</strong> formed by the authenticity of the front-foot action and the stillness of the rear foot. The opponent reads the front foot's ballestra intent, but the rear foot's stillness suggests the action has not truly started. This contradictory signal forces the opponent to hesitate between "reacting" and "waiting," and hesitation itself is the tactical goal. The false retreat into forward counterattack exploits the <strong>visual misdirection of torso withdrawal</strong>, causing the opponent's distance judgment to deviate, thereby launching an attack at the wrong distance.</p>
+</div>
+
+<h2 id="en-4">12.2.4 Invitations</h2>
+
+<p>An invitation is the deliberate exposure of one's valid target to lure the opponent into attacking, while having already prepared the corresponding countermeasure for when the opponent attacks. This includes: deliberately exposing the valid target, forward deliberate over-sensitive defense, and deliberately creating opportunities for the opponent's attack and counterattack.</p>
+
+<h3 id="en-4-1">Deliberately Exposing the Valid Target</h3>
+
+<p>Use specific body language or actions to set a "trap." In actual combat, deliberately make actions such as dropping the blade diagonally, or even let one's defensive position appear somewhat relaxed, exposing the valid target to lure the opponent into attacking. The attacker will believe they have found an exposed gap and make an attacking action. However, behind this seemingly vulnerable state lies a finely designed counterattack. At the moment the opponent makes the attacking action, the defender, through precise reaction, rapidly adjusts and implements a counterattack.</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>Game Theory Perspective</div>
+  <p style="margin-bottom:0;">Deliberately exposing the valid target is a "bait signal" in a <strong>signaling game</strong>. You send a signal that appears disadvantageous (exposing a gap), but this signal actually has a cost—you must have sufficient ability to complete a counterattack when the opponent attacks. If the opponent believes the signal and attacks, they enter your preset trap; if the opponent sees through the signal, you have revealed your true intent. The equilibrium of this game depends on the comparison between your counterattacking ability and the opponent's judgment.</p>
+</div>
+
+<h3 id="en-4-2">Forward Deliberate Over-Sensitive Defense</h3>
+
+<p>In actual competition, athletes sometimes create a false impression through "deliberate defensive over-sensitivity," that is, at the beginning, deliberately making the opponent feel that a certain area has been exposed due to defense and is easy to attack. This strategy can also be combined with rhythmic actions. For example, the defender regularly uses a circular quarte defensive action. The opponent will habitually regard the quarte defensive action as the "conventional means" of the defense line and prepare to break through at a certain point on the circle. However, when the opponent attempts to break through the circle, the defender immediately performs a second or even third rapid arm recovery action, continuously using defensive actions, defeating the opponent through superior speed. This "anti-over-sensitivity" technique in defense requires not only precise control of one's own rhythm but also highly sensitive observation of whether the opponent's attacking habits have been established as a result.</p>
+
+<h3 id="en-4-3">Deliberately Creating Opportunities for Opponent's Attack and Counterattack</h3>
+
+<p>According to the opponent's characteristics, deliberately make some actions that seem easy for the opponent to preemptively attack or counterattack, and sometimes even allow the opponent to succeed with one touch, then make corresponding actions to break the preemptive attack and counterattack based on the opponent's actions. This is used more frequently in épée and sabre competitions.</p>
+
+<p>The above three strategies are often flexibly combined and alternated in actual combat, constantly manipulating the opponent's psychology and action rhythm to form a clever offensive-defensive game system.</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">PP</span>Psychophysiology Perspective</div>
+  <p style="margin-bottom:0;">Deliberately creating opportunities for the opponent's attack and counterattack essentially exploits the opponent's <strong>action bias</strong>: under uncertain situations, humans tend to take action rather than wait. By creating a situation that "seems easy to preemptively attack," you activate the opponent's action impulse. Even if the opponent succeeds with one touch, you gain information about their attacking pattern, laying the foundation for subsequent targeted counter-preemptive and counterattacking actions. This strategy of "buying information with one point" is particularly common in épée and sabre.</p>
+</div>
+
+<h2 id="en-5">12.2.5 Multidisciplinary Analytical Framework</h2>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">NS</span>Neuroscience</div>
+  <p style="margin-bottom:0;">The core neural mechanism of feints and invitations is <strong>predictive coding</strong> and <strong>prediction error</strong>. The opponent's brain continuously predicts your next action. When you send a signal that contradicts the prediction, a prediction error occurs, triggering a redistribution of attention and reaction. Feints break the opponent's predictive model precisely by creating prediction errors. The advantage of high-level fencers is that their predictive models are more precise, allowing them to identify false signals and update predictions in a shorter time.</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>Mathematical Physics</div>
+  <p style="margin-bottom:0;">Feints and invitations can be formalized as a <strong>signaling game</strong>. The sender (Fencer A) chooses a signal (type of feint), the receiver (Opponent B) observes the signal and chooses a reaction, and then A chooses a finishing method based on B's reaction. The signal can be "cheap" (feint) or "costly" (invitation with genuine exposure of a gap). The equilibrium strategy depends on the signal cost, the opponent's reaction distribution, and the expected payoff of the finishing action.</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">DA</span>Data Science</div>
+  <p style="margin-bottom:0;">Through video annotation of bouts, one can build a "signal-response" probability matrix for the opponent. For example, statistically analyze the probability of the opponent parrying in quarte when facing a false straight thrust, the probability of launching an attack when facing an exposed gap, and the probability of preemptively attacking when facing a false ballestra. These data can optimize the design of feints and invitations, shifting tactical choices from empirical intuition to data-driven decisions.</p>
+</div>
+
+<h2 id="en-6">12.2.6 Training Implications</h2>
+
+<p>For a 14-year-old fencer, feint and invitation training should begin with the following:</p>
+
+<ol>
+  <li><strong>Single-feint training</strong>: The coach specifies one feint (e.g., false straight thrust) and repeatedly practices its connection to the subsequent real action until automatic.</li>
+  <li><strong>True-false judgment training</strong>: The coach randomly sends real or false actions, and the fencer must judge and react correctly. This develops the ability to identify true and false signals.</li>
+  <li><strong>Conditional bouting</strong>: Only feints or invitations can score; direct attacks do not count. This forcibly builds deception awareness.</li>
+  <li><strong>Reaction distribution statistics</strong>: Have the fencer record the opponent's reactions to specific feints, building a personal database to support tactical design.</li>
+  <li><strong>Psychological training</strong>: The feint must be realistic but must not lock the fencer's own center of gravity; the invitation must be natural and must not let the opponent see the "deliberateness."</li>
+  <li><strong>Video analysis</strong>: Watch high-level competition, pause at the moment feints and invitations occur, and analyze the fencer's intent, action execution, and opponent reaction.</li>
+</ol>
+
+<h2 id="en-7">12.2.7 Dialogue with Published Research</h2>
+
+<p>Existing fencing studies have used T-pattern and polar coordinate analysis to reveal behavioral sequence patterns in elite foil fencers. Feints and invitations appear in behavioral sequences as a three-stage structure of "signal–response–finish," and their success depends on the predictability of the opponent's response and the fencer's switching speed. Research shows that high-level fencers switch significantly faster after feints than novices, and their feints are harder for opponents to predict. In addition, visual search research shows that high-level fencers can more effectively use peripheral vision to monitor the opponent's blade and body movements, allowing them to maintain perception of the overall space while feinting.</p>
+
+<h2 id="en-8">12.2.8 Model Boundaries</h2>
+
+<p>The game-theoretic model of feints and invitations assumes that fencers are rational and that the opponent's response distribution is stable. In actual bouts, however, the opponent may see through the feint, change response patterns, or the referee's judgment of priority may be subjective. In addition, the subtle aspects of feints—such as deception through gaze, breathing, and rhythm—are difficult to fully formalize. The model can explain the structure of feints and invitations, but it cannot replace intuition and live adaptation in actual fencing. Invitations are especially dependent on referee standards and opponent style; the model can only provide probabilistic guidance, not guaranteed scoring.</p>
+
+<div class="summary">
+  <strong>Summary:</strong> Feints and invitations are the two core categories of deception techniques in foil fencing. Feints create false signals through hand actions (false straight thrust, false press, false beat, false parry, false counterattack) or footwork/body actions (false ballestra, sudden stop, false retreat), guiding the opponent into an erroneous reaction. Invitations, through deliberately exposing the valid target, deliberate over-sensitive defense, and deliberately creating preemptive/counterattacking opportunities, actively lure the opponent into a preset trap. The common essence of both is: <strong>using a controllable cost to purchase information about the opponent's reaction, then using that information to complete the score.</strong> Neuroscience explains the predictive coding mechanism, game theory provides a formal framework, data science optimizes opponent modeling, and training science supports skill acquisition. Only when these four are integrated can a fencer achieve on the piste the ability to "make the opponent act according to your script."
+</div>
+
+</div><!-- /en-section -->
+
+</div><!-- /container -->
+</body>
+</html>
