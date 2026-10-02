@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>13.3 多意图动作序列 | Multi-Intention Action Sequences</title>
+<style>
+  :root {
+    --text: #1a1a1a;
+    --muted: #555;
+    --accent: #8b0000;
+    --border: #ddd;
+    --bg: #fafafa;
+    --en-accent: #003366;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Georgia", "Songti SC", "SimSun", serif;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 32px 120px;
+    background: #fff;
+  }
+
+  h1 {
+    font-size: 1.9em;
+    color: var(--accent);
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 12px;
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 1.1em;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 1.4em;
+    color: var(--accent);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+  }
+
+  h3 {
+    font-size: 1.15em;
+    color: #333;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  h4 {
+    font-size: 1.05em;
+    color: #444;
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 0 0 16px;
+    text-align: justify;
+  }
+
+  ol, ul {
+    margin: 0 0 16px;
+    padding-left: 28px;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  strong {
+    color: #000;
+    font-weight: 700;
+  }
+
+  em {
+    color: var(--muted);
+  }
+
+  blockquote {
+    border-left: 3px solid var(--border);
+    margin: 20px 0;
+    padding: 12px 20px;
+    background: #f8f8f8;
+    color: #333;
+    font-style: italic;
+  }
+
+  .box {
+    background: #f8f8f8;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .box-title {
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .dimension {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.78em;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .divider {
+    text-align: center;
+    color: var(--muted);
+    margin: 48px 0;
+    font-size: 1.2em;
+    letter-spacing: 8px;
+  }
+
+  .en-section {
+    border-top: 2px dashed var(--border);
+    margin-top: 60px;
+    padding-top: 40px;
+  }
+
+  .en-section h1 {
+    color: var(--en-accent);
+    border-bottom-color: var(--en-accent);
+  }
+
+  .en-section h2 {
+    color: var(--en-accent);
+    border-left-color: var(--en-accent);
+  }
+
+  .en-section h3 {
+    color: #1a3a5c;
+  }
+
+  .en-section .dimension {
+    background: var(--en-accent);
+  }
+
+  .en-section .box-title {
+    color: var(--en-accent);
+  }
+
+  .summary {
+    background: #fdf6e3;
+    border: 1px solid #e0c97f;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 32px 0;
+  }
+
+  .summary strong {
+    color: var(--accent);
+  }
+
+  .en-section .summary strong {
+    color: var(--en-accent);
+  }
+
+  .toc {
+    background: #f4f4f4;
+    border-radius: 6px;
+    padding: 20px 28px;
+    margin-bottom: 40px;
+  }
+
+  .toc-title {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .toc a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .term {
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 32px 18px 80px; }
+    h1 { font-size: 1.5em; }
+    h2 { font-size: 1.2em; }
+    body { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== 中文版 ==================== -->
+<h1>13.3 多意图动作序列：基于对手实时反应的决策切换</h1>
+<div class="subtitle">Multi-Intention Action Sequences: Real-time Decision Switching Based on Opponent Live Reactions</div>
+
+<div class="toc">
+  <div class="toc-title">本节结构</div>
+  <ol>
+    <li><a href="#zh-1">多意图动作的定位：组合技术中难度最高的一类</a></li>
+    <li><a href="#zh-2">双意图动作</a></li>
+    <li><a href="#zh-3">双意图与第二意图的本质区别</a></li>
+    <li><a href="#zh-4">多意图动作：双意图的升级</a></li>
+    <li><a href="#zh-5">多意图防御系统</a></li>
+    <li><a href="#zh-6">多学科分析框架</a></li>
+    <li><a href="#zh-7">训练启示</a></li>
+    <li><a href="#zh-8">与已发表研究的对话</a></li>
+    <li><a href="#zh-9">模型边界</a></li>
+  </ol>
+</div>
+
+<p>多意图动作是组合技术中难度最高的一类动作。它要求运动员在同一个起始动作中，根据对手的实时反应，并行准备并快速切换多种战术应答。这不仅要求基本技术高度熟练，还需要扎实的基本功和敏锐的观察、判断能力。本节从双意图动作出发，逐步展开多意图动作的结构、机制与训练方法。</p>
+
+<h2 id="zh-1">13.3.1 多意图动作的定位：组合技术中难度最高的一类</h2>
+
+<p>组合技术是具有个性化特点的，要根据运动员的生理条件、身体素质、心理特点、基本技术特点，将步法、进攻、防守、反攻、反还击等几类基本技术组合起来，建立符合运动员个体的组合技术。在多意图动作中，这种个性化要求达到顶点：同一个起始动作，不同运动员可能准备完全不同的应答分支；同一个运动员，面对不同对手也可能调整其分支权重。</p>
+
+<p>多意图动作是组合技术中难度最高的动作。它不但是基本技术的组合，更是决策结构的组合。它要求运动员在动作启动的瞬间，同时维持多个可能的战术路径，并在对手反应出现的极短时间内选择并执行其中最有利的一条。</p>
+
+<h2 id="zh-2">13.3.2 双意图动作</h2>
+
+<p>双意图动作是一种战术动作，运动员需要在同一个起始动作中准备变化两种不同的战术动作的可能。</p>
+
+<p>例如，在击剑中，通过打断对手的击剑线并做出防守还击。如果对手的攻击未击中，运动员便通过摆脱动作迅速占得先机；而剑被打后（失去主动权），运动员则会立即后退一步并进行防守反击。</p>
+
+<p>在这一过程中，运动员必须具备敏锐的感觉和快速的判断能力，并能够将这种反应达到高度自动化的程度，从而实现双重意图的完美执行。</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>数学物理视角</div>
+  <p style="margin-bottom:0;">双意图动作可以形式化为一个<strong>两分支决策树</strong>。起始动作是根节点，对手的两种可能反应（攻击未击中、剑被打后失去主动权）是分支条件，运动员的两种应答（摆脱占先机、后退防守反击）是叶节点。两个分支的收益取决于对手反应的概率分布和每种应答的命中概率。最优策略不是固定选择某一个分支，而是在对手反应出现的瞬间，以最高速度切换到对应分支。</p>
+</div>
+
+<h2 id="zh-3">13.3.3 双意图与第二意图的本质区别</h2>
+
+<p>需要指出的是，双意图与第二意图有所不同。第二意图是引诱对手陷入圈套，是先有第一意图，然后再实施第二意图。而双意图则是两种意图并列执行，两者之间没有先后之分，在同一时刻并行考虑。</p>
+
+<blockquote>用博弈论的语言说，第二意图是一个<strong>序贯博弈</strong>：你先发送诱饵，对手反应，你再执行第二动作。双意图则是一个<strong>同时博弈</strong>：你在起始动作中同时维持两个计划，对手的反应决定你执行哪一个。第二意图的核心是“诱导”，双意图的核心是“并行准备”。</blockquote>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">NS</span>神经科学视角</div>
+  <p style="margin-bottom:0;">双意图与第二意图的神经机制不同。第二意图依赖<strong>工作记忆</strong>维持第一动作的意图，同时<strong>抑制控制</strong>阻止自己将第一动作变成真实进攻；双意图则依赖<strong>并行运动计划</strong>的同时激活，以及<strong>任务切换</strong>在对手反应出现时的快速执行。双意图对前额叶的认知负荷更高，因为它要求同时维持两个运动计划，而不是按顺序执行两个计划。</p>
+</div>
+
+<h2 id="zh-4">13.3.4 多意图动作：双意图的升级</h2>
+
+<p>对双意图动作进行升级，就是多意图动作。由同一个开始动作，根据对手动作做相应的各种变化。要求将某一个开始动作在实践中可能引起对手的各种反应都做好相应的应答准备。应答手段越多难度越高。</p>
+
+<p>多意图动作的难度体现在三个层面：</p>
+
+<ul>
+  <li><strong>准备层面</strong>：需要在训练中穷举对手可能的反应，并为每一种反应设计应答方案；</li>
+  <li><strong>识别层面</strong>：需要在极短时间内准确识别对手实际做出的反应，区分其真假；</li>
+  <li><strong>执行层面</strong>：需要在识别完成后，快速、准确地执行对应的应答动作，且动作质量不能因决策负荷而下降。</li>
+</ul>
+
+<p>从数学物理角度看，多意图动作是一个<strong>多分支决策树</strong>：起始动作是根节点，对手的N种可能反应是N个分支，运动员的N种应答是N个叶节点。随着N的增加，决策树的复杂度指数上升，对运动员的认知负荷和动作切换速度要求也指数上升。</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>数学物理视角</div>
+  <p style="margin-bottom:0;">多意图动作可以形式化为一个<strong>部分可观察马尔可夫决策过程</strong>（POMDP）。状态是对手的真实反应，但运动员只能通过观察到的信号（对手的剑位、重心、步法）推断状态。运动员的策略是一个从观察到动作的映射。随着意图数量的增加，状态空间和动作空间都扩大，最优策略的计算复杂度上升。</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">ML</span>运动技能学习视角</div>
+  <p style="margin-bottom:0;">多意图动作的学习是一个<strong>组块化</strong>过程。初学者往往将每个分支作为独立动作分别学习，导致切换时有明显停顿；高水平运动员则将整个多意图动作作为一个<strong>超级组块</strong>（super-chunk）进行练习，使各分支的启动都达到自动化。训练的关键是：先分别练习每个分支，再练习分支间的切换，最终在条件实战中随机化对手反应，使多意图动作适应不同情境。</p>
+</div>
+
+<h2 id="zh-5">13.3.5 多意图防御系统</h2>
+
+<p>同样，防御手段上也可采用多意图防御系统，可使各种防守和反攻相结合起来。多意图防御系统的核心是：在同一个防守起始动作中，准备多种防守和反攻的应答，根据对手进攻的实际线路和节奏，选择最有利的防守或反攻方式。</p>
+
+<p>例如，面对对手的进攻，防守方可以在同一个格挡起始动作中，准备直接格挡还击、划圆格挡还击、反攻、下蹲反攻等多种应答。对手的进攻线路、节奏、深度决定防守方执行哪一种应答。这种多意图防御系统使防守方不再是“等待对方进攻然后反应”，而是“在对方进攻启动前就准备好了多种应对方案”。</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">DA</span>数据科学视角</div>
+  <p style="margin-bottom:0;">多意图动作的训练和比赛应用，高度依赖对手反应分布的统计。通过比赛视频标注，可以建立“起始动作→对手反应→己方应答→得分率”的完整数据链。例如，统计对手面对你打断击剑线时，攻击未击中的概率为55%，剑被打后失去主动权的概率为45%；对应两种情况下，你用摆脱占先机的得分率为62%，用后退防守反击的得分率为58%。这些数据可以优化你的分支权重和应答选择，使多意图动作从经验直觉转向数据驱动。</p>
+</div>
+
+<h2 id="zh-6">13.3.6 多学科分析框架</h2>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>数学物理</div>
+  <p style="margin-bottom:0;">多意图动作可形式化为一个<strong>多分支决策树</strong>或<strong>部分可观察马尔可夫决策过程</strong>。起始动作是根节点，对手的N种可能反应是N个分支，运动员的N种应答是N个叶节点。随着N的增加，决策树的复杂度指数上升。最优策略通过动态规划求解，目标是最大化期望得分。这一框架与量化交易中的<strong>多策略组合</strong>在数学结构上同构：同时维持多个策略，根据市场状态切换执行。</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">NS</span>神经科学</div>
+  <p style="margin-bottom:0;">多意图动作要求运动员在极短时间内完成多个动作计划的并行维持和快速切换。这涉及<strong>工作记忆</strong>（维持多个运动计划）、<strong>抑制控制</strong>（阻止过早执行某一个计划）、<strong>任务切换</strong>（在对手反应出现时快速切换到对应计划）。高水平运动员的优势在于：他们的动作切换更自动化，前额叶认知负荷更低，因此能在更短时间内完成更精确的切换。多意图动作的神经训练目标是提高前额叶-运动皮层的调控效率，使多分支决策在低认知负荷下运行。</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">BM</span>生物力学</div>
+  <p style="margin-bottom:0;">多意图动作的力学核心是<strong>起始动作的可逆性</strong>。起始动作必须保持重心在支撑面中央、后腿具备二次蹬伸能力、持剑手仍能快速变换线路。如果起始动作过于激进，重心前移过多，就失去了切换到其他分支的力学基础。这解释了为什么多意图动作的起始动作往往看起来“留有余地”，而不是全力出击。</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">ML</span>运动技能学习</div>
+  <p style="margin-bottom:0;">多意图动作的学习是一个<strong>组块化</strong>过程。初学者往往将每个分支作为独立动作分别学习，导致切换时有明显停顿；高水平运动员则将整个多意图动作作为一个<strong>超级组块</strong>进行练习，使各分支的启动都达到自动化。训练的关键是：先分别练习每个分支，再练习分支间的切换，最终在条件实战中随机化对手反应，使多意图动作适应不同情境。</p>
+</div>
+
+<h2 id="zh-7">13.3.7 训练启示</h2>
+
+<p>对14岁选手，多意图动作训练应从以下方面入手：</p>
+
+<ol>
+  <li><strong>双意图起步</strong>：先练习双意图动作，如“打断击剑线→对手攻击未击中→摆脱占先机”与“打断击剑线→剑被打后失去主动权→后退防守反击”。确保两个分支都能独立完成。</li>
+  <li><strong>分支切换训练</strong>：教练随机选择对手反应，运动员根据反应切换分支。从慢速开始，逐步提高切换速度。</li>
+  <li><strong>多意图扩展</strong>：在双意图基础上，逐步增加分支数量，如加入“对手反攻”“对手后退”等分支。</li>
+  <li><strong>条件实战</strong>：只允许通过多意图动作得分，直接进攻或直接防守不得分。强制建立多意图意识。</li>
+  <li><strong>对手反应随机化</strong>：教练随机选择反应模式，运动员根据对手反应选择应答动作。记录切换时间和得分率。</li>
+  <li><strong>视频分析</strong>：统计自己在比赛中的多意图动作成功率，分析失败案例的分支选择和切换时机问题。</li>
+  <li><strong>认知负荷管理</strong>：多意图动作对认知负荷要求极高，训练中应注意休息和恢复，避免过度疲劳导致决策质量下降。</li>
+</ol>
+
+<h2 id="zh-8">13.3.8 与已发表研究的对话</h2>
+
+<p>已有击剑研究使用T-pattern和极坐标分析揭示了精英花剑运动员的行为序列模式。多意图动作在行为序列中表现为“起始动作-反应-分支应答”的多阶结构，其成功依赖于对手反应的可预测性和运动员的切换速度。研究表明，高水平运动员在对手反应出现后的分支切换时间显著短于新手，且他们的分支应答选择更符合对手身体位置的约束。此外，视觉搜索研究显示，高水平运动员能够更有效地利用周边视觉监测对手的反应变化，这是他们能够快速切换分支的重要原因。</p>
+
+<h2 id="zh-9">13.3.9 模型边界</h2>
+
+<p>多意图动作的博弈论模型假设运动员是理性的，且对手反应分布稳定。然而，实战中对手可能改变反应模式、裁判对优先权的判定存在主观性，且多意图动作的切换窗口极短，高度依赖临场直觉。此外，组合技术的个性化意味着没有一套多意图动作是普适的——模型能提供一般性框架，但不能替代针对个体运动员的定制化设计。模型能解释多意图动作的结构，但不能替代实战中的直觉与临场应变。多意图动作的认知负荷极高，模型也无法完全捕捉运动员在疲劳、压力下的决策质量下降。</p>
+
+<div class="summary">
+  <strong>小结：</strong>多意图动作是组合技术中难度最高的一类动作。它要求运动员在同一个起始动作中，根据对手的实时反应，并行准备并快速切换多种战术应答。双意图动作是两种意图并列执行，没有先后之分；多意图动作是双意图的升级，要求将某一个开始动作在实践中可能引起对手的各种反应都做好相应的应答准备。应答手段越多难度越高。防御手段上也可采用多意图防御系统，使各种防守和反攻相结合。数学物理提供形式化框架，神经科学解释决策机制，运动技能学习支撑训练设计，数据科学优化对手建模。四者合一，方能在剑道上实现“在对手反应出现的瞬间，完成最有利的决策切换”。
+</div>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<!-- ==================== 英文版 ==================== -->
+<div class="en-section">
+
+<h1>13.3 Multi-Intention Action Sequences: Real-time Decision Switching Based on Opponent Live Reactions</h1>
+<div class="subtitle">Multi-Intention Action Sequences: Real-time Decision Switching Based on Opponent Live Reactions</div>
+
+<div class="toc">
+  <div class="toc-title">Section Structure</div>
+  <ol>
+    <li><a href="#en-1">The Place of Multi-Intention Actions: The Most Difficult Category of Combination Techniques</a></li>
+    <li><a href="#en-2">Double-Intention Actions</a></li>
+    <li><a href="#en-3">The Essential Difference Between Double Intention and Second Intention</a></li>
+    <li><a href="#en-4">Multi-Intention Actions: The Upgrade of Double Intention</a></li>
+    <li><a href="#en-5">Multi-Intention Defense System</a></li>
+    <li><a href="#en-6">Multidisciplinary Analytical Framework</a></li>
+    <li><a href="#en-7">Training Implications</a></li>
+    <li><a href="#en-8">Dialogue with Published Research</a></li>
+    <li><a href="#en-9">Model Boundaries</a></li>
+  </ol>
+</div>
+
+<p>Multi-intention actions are the most difficult category of combination techniques. They require the fencer to prepare and rapidly switch among multiple tactical responses in parallel within the same initial action, based on the opponent's live reactions. This demands not only highly proficient basic techniques, but also solid fundamentals and keen observation and judgment. This section starts from double-intention actions and gradually unfolds the structure, mechanisms, and training methods of multi-intention actions.</p>
+
+<h2 id="en-1">13.3.1 The Place of Multi-Intention Actions: The Most Difficult Category of Combination Techniques</h2>
+
+<p>Combination techniques are characterized by individualization. Based on the athlete's physiological conditions, physical qualities, psychological characteristics, and basic technical features, footwork, attack, defense, counterattack, and counter-riposte are combined to establish an individualized combination technique. In multi-intention actions, this individualization requirement reaches its peak: the same initial action may prepare completely different response branches for different athletes; the same athlete may adjust branch weights against different opponents.</p>
+
+<p>Multi-intention actions are the most difficult category of combination techniques. They are not only a combination of basic techniques, but also a combination of decision structures. They require the fencer, at the moment of action initiation, to simultaneously maintain multiple possible tactical paths and, within the extremely short time in which the opponent's reaction appears, to select and execute the most favorable one.</p>
+
+<h2 id="en-2">13.3.2 Double-Intention Actions</h2>
+
+<p>A double-intention action is a tactical action in which the fencer must prepare the possibility of varying two different tactical actions within the same initial action.</p>
+
+<p>For example, in fencing, by interrupting the opponent's fencing line and making a parry-riposte. If the opponent's attack misses, the fencer rapidly gains the initiative through a disengage action; if the blade is beaten (losing the initiative), the fencer immediately retreats one step and makes a defensive counterattack.</p>
+
+<p>In this process, the fencer must possess keen perception and rapid judgment, and must be able to bring this reaction to a highly automatized level, thereby achieving the perfect execution of double intention.</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>Mathematical Physics Perspective</div>
+  <p style="margin-bottom:0;">A double-intention action can be formalized as a <strong>two-branch decision tree</strong>. The initial action is the root node, the opponent's two possible reactions (attack misses, blade is beaten and initiative is lost) are the branch conditions, and the fencer's two responses (disengage to gain initiative, retreat for defensive counterattack) are the leaf nodes. The payoffs of the two branches depend on the probability distribution of the opponent's reactions and the hit probability of each response. The optimal strategy is not to fixedly choose one branch, but to switch to the corresponding branch at maximum speed at the moment the opponent's reaction appears.</p>
+</div>
+
+<h2 id="en-3">13.3.3 The Essential Difference Between Double Intention and Second Intention</h2>
+
+<p>It should be noted that double intention differs from second intention. Second intention is to lure the opponent into a trap: there is first a first intention, and then a second intention is implemented. Double intention, by contrast, executes two intentions in parallel, with no priority between them; they are considered simultaneously at the same moment.</p>
+
+<blockquote>In game-theoretic terms, second intention is a <strong>sequential game</strong>: you send the bait, the opponent reacts, and then you execute the second action. Double intention is a <strong>simultaneous game</strong>: you maintain two plans simultaneously in the initial action, and the opponent's reaction determines which one you execute. The core of second intention is "induction"; the core of double intention is "parallel preparation."</blockquote>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">NS</span>Neuroscience Perspective</div>
+  <p style="margin-bottom:0;">The neural mechanisms of double intention and second intention differ. Second intention relies on <strong>working memory</strong> to maintain the intention of the first action, while <strong>inhibitory control</strong> prevents the first action from becoming a real attack; double intention relies on the simultaneous activation of <strong>parallel motor plans</strong> and the rapid execution of <strong>task switching</strong> when the opponent's reaction appears. Double intention places higher cognitive load on the prefrontal cortex because it requires maintaining two motor plans simultaneously, rather than executing two plans sequentially.</p>
+</div>
+
+<h2 id="en-4">13.3.4 Multi-Intention Actions: The Upgrade of Double Intention</h2>
+
+<p>Upgrading a double-intention action produces a multi-intention action. From the same starting action, corresponding variations are made according to the opponent's actions. It requires preparing corresponding response preparations for all possible reactions that a given starting action may elicit from the opponent in practice. The more response options, the higher the difficulty.</p>
+
+<p>The difficulty of multi-intention actions is reflected at three levels:</p>
+
+<ul>
+  <li><strong>Preparation level</strong>: It is necessary to exhaustively enumerate the opponent's possible reactions in training and design response plans for each reaction;</li>
+  <li><strong>Recognition level</strong>: It is necessary to accurately recognize the opponent's actual reaction within an extremely short time and distinguish true from false;</li>
+  <li><strong>Execution level</strong>: After recognition is completed, it is necessary to rapidly and accurately execute the corresponding response action, and the action quality must not decline due to decision load.</li>
+</ul>
+
+<p>From a mathematical physics perspective, a multi-intention action is a <strong>multi-branch decision tree</strong>: the starting action is the root node, the opponent's N possible reactions are N branches, and the fencer's N responses are N leaf nodes. As N increases, the complexity of the decision tree rises exponentially, and the demands on the fencer's cognitive load and action-switching speed also rise exponentially.</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>Mathematical Physics Perspective</div>
+  <p style="margin-bottom:0;">A multi-intention action can be formalized as a <strong>partially observable Markov decision process</strong> (POMDP). The state is the opponent's true reaction, but the fencer can only infer the state through observed signals (opponent's blade position, center of gravity, footwork). The fencer's strategy is a mapping from observation to action. As the number of intentions increases, both the state space and the action space expand, and the computational complexity of the optimal strategy rises.</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">ML</span>Motor Learning Perspective</div>
+  <p style="margin-bottom:0;">Learning multi-intention actions is a <strong>chunking</strong> process. Beginners often learn each branch as an independent action, resulting in noticeable pauses during switching; high-level fencers practice the entire multi-intention action as a <strong>super-chunk</strong>, making the initiation of each branch automatic. The key to training is: first practice each branch separately, then practice switching between branches, and finally randomize opponent reactions in conditional bouting to make the multi-intention action adaptable to different situations.</p>
+</div>
+
+<h2 id="en-5">13.3.5 Multi-Intention Defense System</h2>
+
+<p>Similarly, a multi-intention defense system can be adopted in defensive methods, combining various defenses and counterattacks. The core of the multi-intention defense system is: within the same defensive starting action, prepare multiple defensive and counterattacking responses, and choose the most favorable defense or counterattack method based on the actual line and rhythm of the opponent's attack.</p>
+
+<p>For example, when facing the opponent's attack, the defender can, within the same parry starting action, prepare multiple responses such as direct parry-riposte, circular parry-riposte, counterattack, and ducking counterattack. The opponent's attack line, rhythm, and depth determine which response the defender executes. This multi-intention defense system makes the defender no longer "wait for the opponent's attack and then react," but rather "have multiple response plans ready before the opponent's attack starts."</p>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">DA</span>Data Science Perspective</div>
+  <p style="margin-bottom:0;">The training and competitive application of multi-intention actions rely heavily on statistics of the opponent's reaction distribution. Through video annotation of bouts, one can build a complete data chain of "starting action → opponent reaction → own response → scoring rate." For example, statistically analyze: when facing your interruption of the fencing line, the opponent's probability of attack missing is 55%, and the probability of the blade being beaten and losing initiative is 45%; under the two corresponding situations, your scoring rate with disengage to gain initiative is 62%, and with retreat for defensive counterattack is 58%. These data can optimize your branch weights and response selection, shifting multi-intention actions from empirical intuition to data-driven decisions.</p>
+</div>
+
+<h2 id="en-6">13.3.6 Multidisciplinary Analytical Framework</h2>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">MP</span>Mathematical Physics</div>
+  <p style="margin-bottom:0;">Multi-intention actions can be formalized as a <strong>multi-branch decision tree</strong> or <strong>partially observable Markov decision process</strong>. The starting action is the root node, the opponent's N possible reactions are N branches, and the fencer's N responses are N leaf nodes. As N increases, the complexity of the decision tree rises exponentially. The optimal strategy is solved through dynamic programming, with the goal of maximizing expected scoring. This framework is mathematically isomorphic to <strong>multi-strategy portfolios</strong> in quantitative trading: maintaining multiple strategies simultaneously and switching execution based on market conditions.</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">NS</span>Neuroscience</div>
+  <p style="margin-bottom:0;">Multi-intention actions require the fencer to complete the parallel maintenance and rapid switching of multiple motor plans within an extremely short time. This involves <strong>working memory</strong> (maintaining multiple motor plans), <strong>inhibitory control</strong> (preventing premature execution of one plan), and <strong>task switching</strong> (rapidly switching to the corresponding plan when the opponent's reaction appears). The advantage of high-level fencers is that their action switching is more automatic, with lower prefrontal cognitive load, allowing them to complete more precise switches in a shorter time. The neural training goal of multi-intention actions is to improve the regulatory efficiency of the prefrontal-motor cortex, enabling multi-branch decision-making to operate under low cognitive load.</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">BM</span>Biomechanics</div>
+  <p style="margin-bottom:0;">The mechanical core of multi-intention actions is the <strong>reversibility of the starting action</strong>. The starting action must keep the center of gravity at the center of the support base, the rear leg capable of a second push-off, and the weapon hand able to rapidly change lines. If the starting action is too aggressive and the center of gravity moves too far forward, the mechanical basis for switching to other branches is lost. This explains why the starting action of a multi-intention action often appears to "retain a margin" rather than being a full-force attack.</p>
+</div>
+
+<div class="box">
+  <div class="box-title"><span class="dimension">ML</span>Motor Learning</div>
+  <p style="margin-bottom:0;">Learning multi-intention actions is a <strong>chunking</strong> process. Beginners often learn each branch as an independent action, resulting in noticeable pauses during switching; high-level fencers practice the entire multi-intention action as a <strong>super-chunk</strong>, making the initiation of each branch automatic. The key to training is: first practice each branch separately, then practice switching between branches, and finally randomize opponent reactions in conditional bouting to make the multi-intention action adaptable to different situations.</p>
+</div>
+
+<h2 id="en-7">13.3.7 Training Implications</h2>
+
+<p>For a 14-year-old fencer, multi-intention action training should begin with the following:</p>
+
+<ol>
+  <li><strong>Start with double intention</strong>: First practice double-intention actions, such as "interrupt the fencing line → opponent's attack misses → disengage to gain initiative" and "interrupt the fencing line → blade is beaten and initiative is lost → retreat for defensive counterattack." Ensure both branches can be completed independently.</li>
+  <li><strong>Branch-switching training</strong>: The coach randomly selects the opponent's reaction, and the fencer switches branches according to the reaction. Start slowly and gradually increase switching speed.</li>
+  <li><strong>Multi-intention expansion</strong>: On the basis of double intention, gradually increase the number of branches, such as adding "opponent counterattacks," "opponent retreats," etc.</li>
+  <li><strong>Conditional bouting</strong>: Only multi-intention actions can score; direct attacks or direct defenses do not count. This forcibly builds multi-intention awareness.</li>
+  <li><strong>Randomized opponent reactions</strong>: The coach randomly selects reaction modes, and the fencer selects the response action based on the opponent's reaction. Record switching time and scoring rate.</li>
+  <li><strong>Video analysis</strong>: Statistically analyze one's own multi-intention action success rate in competition, and analyze branch selection and switching timing issues in failed cases.</li>
+  <li><strong>Cognitive load management</strong>: Multi-intention actions place extremely high demands on cognitive load; training should include rest and recovery to avoid decision quality decline due to excessive fatigue.</li>
+</ol>
+
+<h2 id="en-8">13.3.8 Dialogue with Published Research</h2>
+
+<p>Existing fencing studies have used T-pattern and polar coordinate analysis to reveal behavioral sequence patterns in elite foil fencers. Multi-intention actions appear in behavioral sequences as a multi-stage structure of "starting action–reaction–branch response," and their success depends on the predictability of the opponent's reaction and the fencer's switching speed. Research shows that high-level fencers' branch-switching time after the opponent's reaction appears is significantly shorter than novices, and their branch response selection better conforms to the constraints of the opponent's body position. In addition, visual search research shows that high-level fencers can more effectively use peripheral vision to monitor changes in the opponent's reactions, which is an important reason for their ability to rapidly switch branches.</p>
+
+<h2 id="en-9">13.3.9 Model Boundaries</h2>
+
+<p>The game-theoretic model of multi-intention actions assumes that fencers are rational and that the opponent's reaction distribution is stable. In actual bouts, however, the opponent may change reaction patterns, the referee's judgment of priority may be subjective, and the switching window of multi-intention actions is extremely short, highly dependent on live intuition. In addition, the individualization of combination techniques means that no single multi-intention action is universal—the model can provide a general framework but cannot replace customized design for individual athletes. The model can explain the structure of multi-intention actions, but it cannot replace intuition and live adaptation in actual fencing. The cognitive load of multi-intention actions is extremely high, and the model cannot fully capture the decline in decision quality under fatigue and pressure.</p>
+
+<div class="summary">
+  <strong>Summary:</strong> Multi-intention actions are the most difficult category of combination techniques. They require the fencer to prepare and rapidly switch among multiple tactical responses in parallel within the same initial action, based on the opponent's live reactions. Double-intention actions execute two intentions in parallel, with no priority between them; multi-intention actions are the upgrade of double intention, requiring preparation of corresponding responses for all possible reactions that a given starting action may elicit from the opponent. The more response options, the higher the difficulty. A multi-intention defense system can also be adopted in defensive methods, combining various defenses and counterattacks. Mathematical physics provides a formal framework, neuroscience explains the decision mechanism, motor learning supports training design, and data science optimizes opponent modeling. Only when these four are integrated can a fencer achieve on the piste the ability to "complete the most favorable decision switch at the moment the opponent's reaction appears."
+</div>
+
+</div><!-- /en-section -->
+
+</div><!-- /container -->
+</body>
+</html>
+```
